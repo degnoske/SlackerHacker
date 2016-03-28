@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+
+  "name": "Study Tracker",
+  "description": "This extension shows a Google Image search result for the current page",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "book.png",
+   "default_popup": "popup.html"
+  },
+
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "permissions": [
+  "background",
+    "activeTab",
+    "contextMenus",
+    "https://ajax.googleapis.com/"
+  ]
+  
+}
