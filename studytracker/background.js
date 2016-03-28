@@ -1,26 +1,29 @@
 
 var sec=0;
-
 var myTime;
 var isStarted=false;
-var start=document.getElementById("start");
-
-//Pause Function Not Working
-var pause=document.getElementById("pause");
-
-
 
 function Start(){
 	if (isStarted == false) {
 		set_isStarted(true);
-		myTime = start.onclick = setInterval(counter, 1000);
+		myTime = setInterval(counter, 1000);
 		set_interval(myTime);
 	}
 }
 
-function Pause(){
-	clearInterval(myTime);
+function Stop(){
+
+	clearInterval(get_interval());
+	set_isStarted(false);
+	set_sec(0);
 }
+
+function Pause(){
+	clearInterval(get_interval());
+	set_isStarted(false);
+}
+
+
 function counter() {
 
 	sec++;
