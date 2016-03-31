@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<link rel = "stylesheet" type="text/css" href="style.css">
+		<link rel = "stylesheet" type="text/css" href="login.css">
+		<title>
+		</title>
+	</head>
+	<body>
+		<div class = 'sidebar'>
+			<div class = 'home' onclick="location.href='index.html'">
+			home
+			</div>
+			<div class = 'login' onclick="location.href='login.html'">
+			login
+			</div>
+			<div class = 'graphs' onclick="location.href='graphs.html'">
+			graphs
+			</div>
+			<div class = 'settings' onclick="location.href='settings.html'">
+			settings
+			</div>
+		</div>
+		
+		<div class = 'login_div'>
+			<div class = 'login_wrapper'>
+			
+				<form class = 'login_form' action = "login.php" method = "post">
+					username<input type = 'text' name = 'username'><br>
+					Password<input type = 'password' name = 'password'><br>
+					<input type = 'submit' name = 'submit' value = 'login'><br>
+				</form>
+			</div>
+		</div>
+	</body>
+	
+</html>

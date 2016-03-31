@@ -1,0 +1,89 @@
+body
+{
+	background:repeating-linear-gradient(
+		45deg,
+		
+		orange 10px,
+		
+		white 20px
+	);
+}
+div
+{
+	--mDivHeight:50px;
+}
+
+
+div.title
+{
+	
+	top: 0px;
+	left: 50px;
+	width: 100%;
+	height: var(--mDivHeight);
+	text-align: center;
+	position: fixed;
+	background-color: white;
+	color: black;
+}
+div.sidebar
+{
+	top:0px;
+	left:0px;
+	height:100%;
+	width:50px;
+	background-color: black;
+	color:white;
+	position: fixed;
+}
+div.home
+{
+	top:var(--mDivHeight);
+	left:0px;
+	width:50px;
+	height:var(--mDivHeight);
+	position:fixed;
+	
+}
+div.home:hover
+{
+	background-color: blue;
+}
+
+div.login
+{
+	top:calc(var(--mDivHeight)*2);
+	left:0px;
+	width:50px;
+	height:var(--mDivHeight);
+	position:fixed
+}
+div.login:hover
+{
+	background-color: blue;
+}
+
+div.graphs
+{
+	top:calc(var(--mDivHeight)*3);
+	left:0px;
+	width:50px;
+	height:var(--mDivHeight);
+	position:fixed
+}
+div.graphs:hover
+{
+	background-color: blue;
+}
+div.settings
+{
+	top:calc(var(--mDivHeight)*4);
+	left:0px;
+	width:50px;
+	height:var(--mDivHeight);
+	position:fixed
+}
+div.settings:hover
+{
+	background-color: blue;
+}
