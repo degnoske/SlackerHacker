@@ -86,6 +86,8 @@ function stop_time() {
 }
 
 
+//taken from this example http://stackoverflow.com/questions/6132018/how-can-i-get-the-current-tab-url-for-chrome-extension
+
 chrome.tabs.query({active: true, currentWindow: true}, function(arrayOfTabs) {
 
      // since only one tab should be active and in the current window at once
