@@ -32,25 +32,7 @@ window.onfocus = function() {
 window.onblur = function() {
     focused = false;
 };
-function Hello()
-{
-	alert(window.location);
-}
 
-function fbMon () {
-	chrome.extension.onMessage.addListener(
-	function(request, sender, sendResponse) {
-		if (request.action == 'load') {
-			var time = 1 + parseInt(localStorage['seconds']);
-			var date = localStorage['date'];
-			sendResponse({secounds: time, date: date});
-		}
-		if( request.action == 'save') {
-			localStorage['seconds'] = request.secounds;
-			localStorage['date'] = request.date;
-		}
-	}
-);
 
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-38323138-1']);
