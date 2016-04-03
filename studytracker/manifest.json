@@ -1,23 +1,22 @@
 {
   "manifest_version": 2,
 
-  "name": "Study Tracker",
-  "description": "Tracks Study Time",
+  "name": "Slacker",
+  "description": "Be productive!",
   "version": "1.0",
 
   "browser_action": {
     "default_icon": "book.png",
    "default_popup": "popup.html"
   },
-
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["js/background.js"],
     "persistent": true
   },
-  "permissions": [
-  "background",
-    "activeTab",
-    "contextMenus",
+  "chrome_url_overrides": {
+      "newtab": "newtab.html"
+   },
+  "permissions": [ "idle", "tabs", "geolocation", "storage", "background", "activeTab", "contextMenus",
     "https://ajax.googleapis.com/"
   ]
   
