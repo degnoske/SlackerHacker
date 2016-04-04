@@ -23,6 +23,13 @@ window.onload = function() {
 	
 	var viewStats = document.getElementById("viewStats");
 	viewStats.onclick=Hello;
+
+	if(bg.get_isStarted()==true){
+	document.getElementById("start").innerHTML = "Studying";
+	}
+	else{
+	document.getElementById("start").innerHTML = "Start Studying";
+	}
 };
 
 window.onfocus = function() {
