@@ -33,6 +33,9 @@ function counter() {
 function set_isStarted(bool){
 	isStarted=bool;
 }
+function get_isStarted(){
+	return isStarted;
+}
 function set_interval(interval){
 	myTime=interval;
 
@@ -49,4 +52,11 @@ function get_sec(){
 
 }
 
-
+//This line opens up a long-lived connection to your background page.
+chrome.runtime.onConnect.addListener(function(port) {
+  console.assert(port.name == "message");
+  port.onMessage.addListener(function(msg) {
+    if (msg.message == "pause")
+      Pause();
+  });
+});
