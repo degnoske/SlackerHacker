@@ -1,5 +1,5 @@
 
-window.onload = function() 
+window.onfocus = function() 
 {
 	 var port = chrome.runtime.connect({name: "message"});
 	port.postMessage({message: "pause"});
