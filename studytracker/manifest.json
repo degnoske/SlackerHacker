@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-
+	"content_security_policy": "script-src 'self' 'unsafe-eval' https://www.gstatic.com; object-src 'self'",
   "name": "Study Tracker",
   "description": "Tracks Study Time",
   "version": "1.0",
@@ -11,19 +11,22 @@
   },
 "content_scripts": [
     {
-      "matches": ["https://www.facebook.com/"],
+      "matches": ["https://Facebook.com/"],
       "js": ["alert.js"]
     }
   ],
+  
   "background": {
     "scripts": ["background.js"],
     "persistent": true
+	
   },
   "permissions": [
   "background",
     "activeTab",
     "contextMenus",
     "https://ajax.googleapis.com/"
+	
   ]
   
 }

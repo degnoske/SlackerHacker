@@ -44,7 +44,7 @@ function DailyGraph(aTitle, aArrayOfSites, aArrayOfTime, aWidth, aHeight, aHtmlI
 	
 	this.draw = function(){this.Chart.draw(lData, this.options)}
 }
---
+
 //"Javascript "class" for a daily productivity graph
 //
 function WeeklyGraph(aTitle, aMonday, aTuesday, aWednesday, aThursday, aFriday, aWidth, aHeight, aHtmlId)
