@@ -9,7 +9,12 @@
     "default_icon": "book.png",
    "default_popup": "popup.html"
   },
-
+"content_scripts": [
+    {
+      "matches": ["https://www.facebook.com/"],
+      "js": ["alert.js"]
+    }
+  ],
   "background": {
     "scripts": ["background.js"],
     "persistent": true

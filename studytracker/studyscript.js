@@ -23,22 +23,17 @@ window.onload = function() {
 	
 	var viewStats = document.getElementById("viewStats");
 	viewStats.onclick=Hello;
-};
 
-window.onfocus = function() {
+	if(bg.get_isStarted()==true){
+	document.getElementById("start").innerHTML = "Studying";
+	}
+	else{
+	document.getElementById("start").innerHTML = "Start Studying";
+	}
 	
-    focused = true;
+	var viewTime = document.getElementById("time");
+	viewTime = view_time();
 };
-window.onblur = function() {
-    focused = false;
-};
-
-
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-38323138-1']);
-_gaq.push(['_trackPageview']);
-	
-}
 
   /**
    * updates time Display every 1000 ms
@@ -88,7 +83,7 @@ function stop_time() {
 
 //taken from this example http://stackoverflow.com/questions/6132018/how-can-i-get-the-current-tab-url-for-chrome-extension
 
-chrome.tabs.query({active: true, currentWindow: true}, function(arrayOfTabs) {
+/*chrome.tabs.query({active: true, currentWindow: true}, function(arrayOfTabs) {
 
      // since only one tab should be active and in the current window at once
      // the return variable should only have one entry
@@ -100,7 +95,7 @@ chrome.tabs.query({active: true, currentWindow: true}, function(arrayOfTabs) {
 		//do something here
 
 	}
-  });
+  });*/
 
 
 	
