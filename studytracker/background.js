@@ -52,11 +52,83 @@ function get_sec(){
 
 }
 
+///////////////////
+////Bad Timer/////
+//////////////////
+
+var bad_sec=0;
+var bad_Time;
+var isBadStarted=false;
+
+function BadStart(){
+	if (isBadStarted == false) {
+		set_isBadStarted(true);
+		bad_Time = setInterval(counter, 1000);
+		set_interval(bad_time);
+	}
+}
+
+function BadStop(){
+
+	clearInterval(get_interval());
+	set_isSBadtarted(false);
+	set_Badsec(0);
+}
+
+function BadPause(){
+	clearInterval(get_interval());
+	set_isBadStarted(false);
+}
+
+
+function Badcounter() {
+
+	bad_sec++;
+
+	set_sec(bad_sec);
+}
+function set_isBadStarted(bool){
+	isBadStarted=bool;
+}
+function get_isBadStarted(){
+	return isStarted;
+}
+function set_Badinterval(interval){
+	bad_Time=interval;
+
+}
+function set_Badsec(second){
+	bad_sec=second;
+}
+function get_Badinterval(){
+	return bad_Time;
+}
+function get_Badsec(){
+
+	return bad_sec;
+
+}
+
+
+
+
 //This line opens up a long-lived connection to your background page.
-chrome.runtime.onConnect.addListener(function(port) {
+chrome.runtime.onConnect.addListener(function(port)
+ {
   console.assert(port.name == "message");
-  port.onMessage.addListener(function(msg) {
-    if (msg.message == "pause")
-      Pause();
+  port.onMessage.addListener(function(msg)
+   {
+	  if (msg.message == "pause")
+	  {
+	  	      Pause();
+	  }
+	  else if (msg.message == "startBad")
+	  {
+	  		  StartBad();
+	  }
+	  else if (msg.message == "start")
+	  {
+	  			Start();
+	  }
   });
 });
