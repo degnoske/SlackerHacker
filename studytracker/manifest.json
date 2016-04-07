@@ -1,5 +1,6 @@
 {
   "manifest_version": 2,
+  "content_security_policy": "script-src 'self' 'unsafe-eval' https://ajax.googleapis.com; object-src 'self'",
 
   "name": "Study Tracker",
   "description": "Tracks Study Time",
@@ -11,18 +12,19 @@
   },
 "content_scripts": [
     {
-      "matches": ["https://www.facebook.com/"],
-      "js": ["alert.js"]
+      "matches": ["https://*/*"],
+      "css" : ["style.css"]
     }
   ],
   "background": {
-    "scripts": ["background.js"],
+    "page": "alert.html",
     "persistent": true
   },
   "permissions": [
   "background",
     "activeTab",
     "contextMenus",
+    "webNavigation",
     "https://ajax.googleapis.com/"
   ]
   

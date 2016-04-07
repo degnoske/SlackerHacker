@@ -5,6 +5,7 @@
 window.onload = function() {
 	
 	
+   
     var start = document.getElementById("start");
     start.onclick = start_time;
 
