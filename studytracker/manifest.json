@@ -1,6 +1,8 @@
 {
   "manifest_version": 2,
-
+  
+	"content_security_policy": "script-src 'self' 'unsafe-eval' https://www.gstatic.com; object-src 'self'",
+	
   "name": "Slacker",
   "description": "Be productive!",
   "version": "1.0",
@@ -9,14 +11,15 @@
     "default_icon": "book.png",
     "default_popup": "popup.html"
   },
+  
   "background": {
-    "scripts": [ "js/bootstrap.min.js", "js/background.js"],
+    "scripts": ["js/background.js"],
     "persistent": true
   },
   "chrome_url_overrides": {
       "newtab": "newtab.html"
    },
-  "permissions": [ "idle", "tabs", "geolocation", "storage", "background", "activeTab", "contextMenus",
+  "permissions": ["idle", "tabs", "geolocation", "storage", "background", "activeTab", "contextMenus",
     "https://ajax.googleapis.com/"
   ]
   
