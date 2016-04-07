@@ -12,4 +12,19 @@
 	var rand = Math.floor(Math.random() * quotes.length);
 	
       document.getElementById("quotes").innerHTML = quotes[rand];
-})();
+	  
+	var bgImage = ['../img/run.jpg','../img/running.jpg'],
+    selectBG = bgImage[Math.floor(Math.random() * bgImage.length)];
+ 
+	document.getElementByClassName("intro").style.backgroundImage = 'url(' + selectBG + ')';
+})(); 
+
+$(document).ready(function() {
+
+	$(".intro").RandBG({
+		ClassPrefix: "bg",
+		count: 10
+	});
+}); 
+
+

@@ -137,13 +137,23 @@ a:focus {
     padding: 100px 0;
     text-align: center;
     color: #fff;
-    background: url(../img/sport.jpg) no-repeat;
+    background: url('../img/sport.jpg') no-repeat center center fixed;
     background-size: 100%;
     background-color: #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
 }
+.intro.bg1 {
+	background-image: url('../img/run.jpg');
+}
+.intro.bg2 {
+	background-image: url('../img/running.jpg');
+}
+.intro.bg3 {
+	background-image: url('../img/social.png');
+}
+
 
 .intro .intro-body {
     display: table-cell;
