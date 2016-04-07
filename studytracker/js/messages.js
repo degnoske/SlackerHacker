@@ -26,7 +26,7 @@ function bgTimer() {
 	"Drink plenty of water throughout the day.",
 	"Fill your lunch with vegetable and healthy options.",
 	"Drinking tea can boost your metabolism.",
-	"Tired? How's about a short nap :p",
+	"Tired? How's about a short nap?",
 	"'Excuses burn zero calories. Get up!' - Vuong Nguyen",
 	"Dream and believe in your dreams...when you sleep.",
 	"Still working? Grab some coffee."
@@ -45,10 +45,10 @@ function bgTimer() {
 	} else if (h>10 && h<=13) {
 		$(".intro").addClass("lunch");
 		document.getElementById("reminders").innerHTML = reminder[2];
-	} else if (h>13 && h<=15) {
+	} else if (h>13 && h<=14) {
 		$(".intro").addClass("tea");
 		document.getElementById("reminders").innerHTML = reminder[3];
-	} else if (h>15 && h <=16) {
+	} else if (h>14 && h <=16) {
 		$(".intro").addClass("nap");
 		document.getElementById("reminders").innerHTML = reminder[4];
 	} else if (h>16 && h < 19) {
