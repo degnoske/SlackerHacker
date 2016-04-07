@@ -137,21 +137,36 @@ a:focus {
     padding: 100px 0;
     text-align: center;
     color: #fff;
-    background: url('../img/sport.jpg') no-repeat center center fixed;
+    background: url('../img/default.png') no-repeat center center fixed;
     background-size: 100%;
     background-color: #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
 }
-.intro.bg1 {
+.intro.breakfast {
+	background-image: url('../img/breakfast.jpg');
+}
+.intro.water {
+	background-image: url('../img/water.jpg');
+}
+.intro.lunch {
+	background-image: url('../img/lunch.jpg');
+}
+.intro.tea {
+	background-image: url('../img/tea.jpg');
+}
+.intro.nap {
+	background-image: url('../img/nap.jpg');
+}
+.intro.run {
 	background-image: url('../img/run.jpg');
 }
-.intro.bg2 {
-	background-image: url('../img/running.jpg');
+.intro.dream {
+	background-image: url('../img/dream.jpg');
 }
-.intro.bg3 {
-	background-image: url('../img/social.png');
+.intro.coffee{
+	background-image: url('../img/coffee.jpg');
 }
 
 
@@ -165,7 +180,7 @@ a:focus {
 }
 
 .intro .intro-body .intro-text {
-    font-size: 25px;
+    font-size: 15px;
 }
 
 @media(min-width:768px) {
@@ -175,11 +190,11 @@ a:focus {
     }
 
     .intro .intro-body .brand-heading {
-        font-size: 40px;
+        font-size: 50px;
     }
 
     .intro .intro-body .intro-text {
-        font-size: 35px;
+        font-size: 30px;
     }
 }
 
