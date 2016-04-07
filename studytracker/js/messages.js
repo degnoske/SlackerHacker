@@ -2,11 +2,11 @@
   
   var quotes = [
 	"'Argue with idiots, and you become an idiot.' - Paul Graham",
-	"'Be yourself; everyone else is already taken.' - Oscar Wilde",
     "'Simplicity is the ultimate sophistication.' - Leonardo Da Vinci",
 	"Positive thoughts are medicinal.",
 	"Have you smiled today?",
-	"If you judge a book by its cover, you might miss out an amazing story."
+	"If you judge a book by its cover, you might miss out an amazing story.",
+	"'Be yourself; everyone else is already taken.' - Oscar Wilde"
   ];
   
 	var rand = Math.floor(Math.random() * quotes.length);
