@@ -1,6 +1,9 @@
 (function() {
   
   var quotes = [
+	"Try to be a rainbow in someone's cloud. - Maya Angelou",
+	"Put your heart, mind, and soul into even your smallest acts. This is the secret of success. - Swami Sivananda",
+	"The best preparation for tomorrow is doing your best today. - H. Jackson Brown, Jr.",
 	"'Argue with idiots, and you become an idiot.' - Paul Graham",
     "'Simplicity is the ultimate sophistication.' - Leonardo Da Vinci",
 	"Positive thoughts are medicinal.",
