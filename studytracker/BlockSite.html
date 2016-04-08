@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title></title>
+    <meta content="">
+    <style></style>
+  </head>
+  <body>
+    <?php
+    $mysqli = new mysqli("mysql.eecs.ku.edu", "psundara", "sripassword", "psundara");
+	if ($mysqli->connect_errno) 
+	{
+		die("Connection failed: " . $mysqli->connect_error);
+	}
+
+    $result = $mysqli->query("SELECT * FROM test");
+    $array = mysqli_fetch_all($result, MYSQLI_NUM);
+    $num_users = mysqli_num_rows($result);
+    if($num_users > 0)
+    {
+	  echo "<form method='POST' action='BlockSite.php'>";
+      echo "<table border='1'>";
+	  echo "<tr>";
+      echo "<th>Site Id</th>";
+      echo "<th>URL</th>";
+      echo "<th>Site Name</th>";
+	echo "<th>Block</th>";
+	  echo "</tr>";
+      foreach($array as $row)
+       {
+                echo "<tr>";
+                echo "<td>" . $row[0] . "</td>";
+				echo "<td>" . $row[1] . "</td>";
+				echo "<td>" . $row[2] . "</td>";
+				echo "<td><input type='checkbox' name='block[]' value='" . $row[1] . "'</td>";
+				echo "</tr>";
+
+      }
+      echo "</table><br><br>";
+	  echo "<input type='submit' name='submit' id='submit'>";
+	  echo "</form>";
+	
+    }
+      ?>
+</body>
+</html>
