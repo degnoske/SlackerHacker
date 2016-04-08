@@ -1,5 +1,5 @@
 /* Good Timer
-// author: Dylan Egnoske
+// @author Dylan Egnoske
 // pre: Timer is being called recursively studyTracker.js
 // post: Timer creates a time string that is updated every second
 */
@@ -40,7 +40,7 @@ chrome.webNavigation.onCompleted.addListener(function(e)
 			});	
 		}	
 	});
-//Author: Dylan Egnoske
+// @author Dylan Egnoske
 var sec=0;
 var myTime;
 var isStarted=false;
@@ -94,7 +94,7 @@ function get_sec(){
 
 }
 /* Bad Timer
-// author: Luke Dercher
+// @author Luke Dercher
 // pre: Timer is being called recursively studyTracker.js
 // post: Timer creates a time string that is updated every second
 */
@@ -128,7 +128,7 @@ function get_bad_store()
 	}
 	return storageBad
 }
-//Author: Luke Dercher
+//@Author Luke Dercher
 ///////////////////
 ////Bad Timer/////
 //////////////////
@@ -188,7 +188,7 @@ function get_Badsec(){
 
 
 
-//author: Dylan Egnoske, Luke Dercher
+//@author Dylan Egnoske, Luke Dercher
 //This line opens up a long-lived connection to your background page.
 chrome.runtime.onConnect.addListener(function(port)
  {
@@ -210,5 +210,4 @@ chrome.runtime.onConnect.addListener(function(port)
   });
 });
 
-//author:Luke Dercher
 
