@@ -15,8 +15,8 @@ google.charts.setOnLoadCallback(makeGraphs);
         var options = {
           title: 'My Daily Productivity',
           pieHole: 0.1,
-		  'width': 600,
-		  'height':600
+		  'width': 300,
+		  'height':200
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
@@ -132,15 +132,13 @@ function makeGraphs()
 	if(goodTime == 0 && badTime == 0)
 	{
 		
-		document.getElementById('donutchart').innerHTML = "No Data For Today";
+		document.getElementById('graphchart').innerHTML = "No Data For Today";
 	}
 	else
 	{	
-		var Pie = new DailyGraph("Study Time", ['Study', 'Not Studing'], [bg.get_good_store(), bg.get_bad_store()], 400, 300, 'donutchart')
+		var Pie = new DailyGraph("Study Time", ['Study', 'Not Studing'], [bg.get_good_store(), bg.get_bad_store()], 300, 200, 'graphchart')
 		Pie.draw();
 	}
-	
-	var weekly = new WeeklyGraph("Weekly Productivity", 1, 2, 1, 10, 22, 400, 300, 'graphchart');
-	weekly.draw
+	drawChart();
 	
 }
