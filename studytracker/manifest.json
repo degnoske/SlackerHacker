@@ -25,6 +25,7 @@
    },
   "permissions": ["idle", "tabs", "geolocation", "storage", "background", "activeTab", "contextMenus",
     "webNavigation",
+	"*://*/*",
     "https://ajax.googleapis.com/"
   ]
 

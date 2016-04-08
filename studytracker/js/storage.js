@@ -24,8 +24,8 @@ function StorageObj(aKey)
 
 function runeverything()
 {
-  var myStorage = new StorageObj('rad');
-  myStorage.setValue(2);
+ // var myStorage = new StorageObj('rad');
+  //myStorage.setValue(2);
 }
 
 function testStorage()
