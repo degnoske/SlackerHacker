@@ -18,7 +18,7 @@ function StorageObj(aKey)
     {
       var obj = {};
       obj[aKey] = aVal;
-      chrome.storage.local.set(obj, function(){alert("saved")});
+      chrome.storage.local.set(obj, function(){});
     }
 }
 

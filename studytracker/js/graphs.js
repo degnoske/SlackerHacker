@@ -1,5 +1,5 @@
 google.charts.load("current", {packages:["corechart"]});
-google.charts.setOnLoadCallback(drawChart);
+google.charts.setOnLoadCallback(makeGraphs);
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
@@ -96,4 +96,39 @@ function WeeklyGraph(aTitle, aMonday, aTuesday, aWednesday, aThursday, aFriday, 
 	this.Chart = new google.visualization.BarChart(document.getElementById(aHtmlId));
 	
 	this.draw = function(){this.Chart.draw(lData, this.options)}
+}
+
+function makeGraphs()
+{
+	var lKey = "GoodTimer"
+	var bg = chrome.extension.getBackgroundPage();
+	var goodStorage = new StorageObj(lKey);
+	goodStorage.setValue(bg.get_good_store()+ bg.get_sec())
+	//goodStorage.get doesn't work do to asyncronization of js
+	chrome.storage.local.get(lKey, function(obj)
+      {
+		  var bg = chrome.extension.getBackgroundPage();
+		 
+		  bg.store_good_sec(obj[lKey]);
+	  })
+	  
+	  var badKey = "BadTimer"
+	  var badStorage = new StorageObj("BadTimer");
+	  
+	  bg.store_bad_sec(1);
+	  alert(bg.get_Badsec())
+	badStorage.setValue(bg.get_bad_store()+ bg.get_Badsec())
+	//badStorage.get doesn't work do to asyncronization of js
+	chrome.storage.local.get(badKey, function(obj)
+      {
+		  var bg = chrome.extension.getBackgroundPage();
+		  
+		  bg.store_bad_sec(obj[badKey]);
+	  })
+	  
+	  
+	
+	var Pie = new DailyGraph("Study Time", ['Study', 'Not Studing'], [bg.get_good_store(), bg.get_bad_store()], 400, 300, 'donutchart')
+	
+	Pie.draw();
 }

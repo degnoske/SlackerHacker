@@ -22,11 +22,12 @@ chrome.webNavigation.onCompleted.addListener(function(e)
 
 						if (confirm("Are you sure you want get on social media? (Click Cancel to redirect to Google") == true) 
 						{
-							port.postMessage({message: "startbad"});
+							BadStart();
 					   	 } 
 					   	 else 
 					   	 {
-							location = 'http://www.google.com';
+							chrome.tabs.update({url: "https://www.google.com"});
+							window.close();
 							port.postMessage({message: "start"});
 					   	 }
 					   	
@@ -92,6 +93,28 @@ function get_sec(){
 
 }
 
+var storageGood
+function store_good_sec(aValue)
+{
+	storageGood = aValue
+}
+
+function get_good_store()
+{
+	return storageGood
+}
+
+var storageBad
+function store_bad_sec(aValue)
+{
+	storageBad = aValue
+}
+
+function get_bad_store()
+{
+	alert("here: " + storageBad)
+	return storageBad
+}
 //Author: Luke Dercher
 ///////////////////
 ////Bad Timer/////
@@ -103,8 +126,9 @@ var isBadStarted=false;
 
 function BadStart(){
 	if (isBadStarted == false) {
+		
 		set_isBadStarted(true);
-		bad_Time = setInterval(counter, 1000);
+		bad_Time = setInterval(Badcounter, 1000);
 		set_interval(bad_time);
 	}
 }
@@ -125,8 +149,7 @@ function BadPause(){
 function Badcounter() {
 
 	bad_sec++;
-
-	set_sec(bad_sec);
+	set_Badsec(bad_sec);
 }
 function set_isBadStarted(bool){
 	isBadStarted=bool;
