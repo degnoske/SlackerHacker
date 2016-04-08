@@ -3,6 +3,10 @@
 // pre: Timer is being called recursively studyTracker.js
 // post: Timer creates a time string that is updated every second
 */
+chrome.webNavigation.onCompleted.addListener(function(e)
+	{
+		var activeTab = window.location.hostname; 
+		var url =e.url;
 		var n1 = url.indexOf("www.");
 		var n2 = url.indexOf(".com") + 4;
 		var domain = url.slice(n1,n2);
@@ -30,15 +34,11 @@
 							chrome.tabs.update({url: "https://www.google.com"});
 							window.close();
 							Start();
-					   	 }
-					   	
+					   	 }	
 					}
 				});
-			});
-			
-		}
-		
-		
+			});	
+		}	
 	});
 //Author: Dylan Egnoske
 var sec=0;
