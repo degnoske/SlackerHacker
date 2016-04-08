@@ -160,7 +160,35 @@ function get_Badsec(){
 
 }
 
+var storageGood
+function store_good_sec(aValue)
+{
+	storageGood = aValue
+}
 
+function get_good_store()
+{
+	if(!storageGood)
+	{
+		storageGood = 0;
+	}
+	return storageGood
+}
+
+var storageBad
+function store_bad_sec(aValue)
+{
+	storageBad = aValue
+}
+
+function get_bad_store()
+{
+	if(!storageBad)
+	{
+		storageBad = 0;
+	}
+	return storageBad
+}
 
 //@author Dylan Egnoske, Luke Dercher
 //This line opens up a long-lived connection to your background page.
