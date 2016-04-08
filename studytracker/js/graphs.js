@@ -116,7 +116,7 @@ function makeGraphs()
 	  var badStorage = new StorageObj("BadTimer");
 	  
 	  
-	  alert(bg.get_Badsec())
+	
 	badStorage.setValue(bg.get_bad_store()+ bg.get_Badsec())
 	//badStorage.get doesn't work do to asyncronization of js
 	chrome.storage.local.get(badKey, function(obj)
@@ -129,7 +129,7 @@ function makeGraphs()
 	  
 	var goodTime = bg.get_good_store();
 	var badTime = bg.get_bad_store();
-	if(!goodTime && !badTime)
+	if(goodTime == 0 && badTime == 0)
 	{
 		
 		document.getElementById('donutchart').innerHTML = "No Data For Today";
