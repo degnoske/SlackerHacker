@@ -22,10 +22,11 @@
   },
   "permissions": [
   "background",
+  "storage",
     "activeTab",
     "contextMenus",
     "webNavigation",
     "https://ajax.googleapis.com/"
   ]
-  
+
 }

@@ -4,35 +4,36 @@
 <head>
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 	<!-- Include the JQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script type = "text/javascript" src="background.js"></script>
+	<script type = "text/javascript" src="storage.js"></script>
 	<p id="foo" value = '5'>example</p>
-	
+
 	<!--<script type="text/javascript">
 	alert("html page loads");
-	window.onfocus = function() 
+	window.onfocus = function()
 	{
 		alert("html page loads");
 		var activeTab = window.location.hostname;
-		var jqxhr = $.post("checker.php", {dataToSendToServer1: activeTab}, function(data) 
+		var jqxhr = $.post("checker.php", {dataToSendToServer1: activeTab}, function(data)
 		{
 			if(data == 1)
 			{
 				var port = chrome.runtime.connect({name: "message"});
 				port.postMessage({message: "pause"});
 
-				if (confirm("Are you sure you want get on social media? (Click Cancel to redirect to Google") == true) 
+				if (confirm("Are you sure you want get on social media? (Click Cancel to redirect to Google") == true)
 				{
 					port.postMessage({message: "startbad"});
-			   	 } 
-			   	 else 
+			   	 }
+			   	 else
 			   	 {
 					location = 'http://www.google.com';
 					port.postMessage({message: "start"});
 			   	 }
 			}
 		});
-		
+
 	}
 
 	</script>*-->
