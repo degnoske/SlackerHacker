@@ -1,5 +1,5 @@
 /**
- *  @author: Dylan Egnoske, Luke Dercher
+ *  @author Dylan Egnoske, Luke Dercher
  *This js file runs the functions in background.js when the appropirate buttons are pressed.
  */
 var bg = chrome.extension.getBackgroundPage();
@@ -31,16 +31,16 @@ window.onload = function() {
 };
 
 /**
- * @author: Dylan Egnoske
- * @returns: null
+ * @author Dylan Egnoske
+ * @returns null
  */
 function pause_time(){
     bg.Pause();
 
 }
 /**
- * @author: Dylan Egnoske
- * @returns: null
+ * @author Dylan Egnoske
+ * @returns null
  */
 function start_time() {
 
@@ -49,8 +49,8 @@ function start_time() {
 }
 
 /**
- * @author: Dylan Egnoske
- * @returns: null
+ * @author Dylan Egnoske
+ * @returns null
  */
 
 function stop_time() {
