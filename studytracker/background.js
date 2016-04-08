@@ -1,4 +1,8 @@
-
+/* Good Timer
+// author: Dylan Egnoske
+// pre: Timer is being called recursively studyTracker.js
+// post: Timer creates a time string that is updated every second
+*/
 var sec=0;
 var myTime;
 var isStarted=false;
@@ -52,9 +56,11 @@ function get_sec(){
 
 }
 
-///////////////////
-////Bad Timer/////
-//////////////////
+/* Bad Timer
+// author: Luke Dercher
+// pre: Timer is being called recursively studyTracker.js
+// post: Timer creates a time string that is updated every second
+*/
 
 var bad_sec=0;
 var bad_Time;
@@ -111,7 +117,7 @@ function get_Badsec(){
 
 
 
-
+//author: Dylan Egnoske, Luke Dercher
 //This line opens up a long-lived connection to your background page.
 chrome.runtime.onConnect.addListener(function(port)
  {
@@ -133,6 +139,7 @@ chrome.runtime.onConnect.addListener(function(port)
   });
 });
 
+//author:Luke Dercher
 //taken from this example http://stackoverflow.com/questions/6132018/how-can-i-get-the-current-tab-url-for-chrome-extension
 //checks if current tab is not facebook. If it isn't it starts the timer and pauses the bad timer. 
 //not verifiably working yet. No way to see bad timer.
