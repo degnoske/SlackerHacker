@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "content_security_policy": "script-src 'self' 'unsafe-eval' https://ajax.googleapis.com;  https://www.gstatic.com; object-src 'self'",
+  "content_security_policy": "script-src 'self' 'unsafe-eval'  https://www.gstatic.com https://*.googleapis.com; object-src 'self'",
 	
   "name": "Slacker",
   "description": "Be productive!",
@@ -25,7 +25,7 @@
    },
   "permissions": ["idle", "tabs", "geolocation", "storage", "background", "activeTab", "contextMenus",
     "webNavigation",
-	"*://*/*",
+	"*://*/",
     "https://ajax.googleapis.com/"
   ]
 
