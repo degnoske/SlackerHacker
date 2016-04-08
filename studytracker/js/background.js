@@ -23,12 +23,13 @@ chrome.webNavigation.onCompleted.addListener(function(e)
 						if (confirm("Are you sure you want get on social media? (Click Cancel to redirect to Google") == true) 
 						{
 							BadStart();
+							Pause();
 					   	 } 
 					   	 else 
 					   	 {
 							chrome.tabs.update({url: "https://www.google.com"});
 							window.close();
-							port.postMessage({message: "start"});
+							Start();
 					   	 }
 					   	
 					}
