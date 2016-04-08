@@ -115,7 +115,7 @@ function makeGraphs()
 	  var badKey = "BadTimer"
 	  var badStorage = new StorageObj("BadTimer");
 	  
-	  bg.store_bad_sec(1);
+	  
 	  alert(bg.get_Badsec())
 	badStorage.setValue(bg.get_bad_store()+ bg.get_Badsec())
 	//badStorage.get doesn't work do to asyncronization of js
@@ -127,8 +127,20 @@ function makeGraphs()
 	  })
 	  
 	  
+	var goodTime = bg.get_good_store();
+	var badTime = bg.get_bad_store();
+	if(!goodTime && !badTime)
+	{
+		
+		document.getElementById('donutchart').innerHTML = "No Data For Today";
+	}
+	else
+	{	
+		var Pie = new DailyGraph("Study Time", ['Study', 'Not Studing'], [bg.get_good_store(), bg.get_bad_store()], 400, 300, 'donutchart')
+		Pie.draw();
+	}
 	
-	var Pie = new DailyGraph("Study Time", ['Study', 'Not Studing'], [bg.get_good_store(), bg.get_bad_store()], 400, 300, 'donutchart')
+	var weekly = new WeeklyGraph("Weekly Productivity", 1, 2, 1, 10, 22, 400, 300, 'graphchart');
+	weekly.draw
 	
-	Pie.draw();
 }

@@ -9,42 +9,33 @@ window.onload = function() {
     var start = document.getElementById("start");
     start.onclick = start_time;
 
-    var view = document.getElementById("view");
-   view.onclick = view_time;
-
-
+    
     var pause = document.getElementById("pause");
     pause.onclick=pause_time;
 
-    var resume = document.getElementById("resume");
-    resume.onclick=start_time;
+   
 
     var stop = document.getElementById("stop");
     stop.onclick=stop_time;
 	
-	var viewStats = document.getElementById("viewStats");
-	viewStats.onclick=Hello;
 
 	if(bg.get_isStarted()==true){
-	document.getElementById("start").innerHTML = "Studying";
+	document.getElementById("start").value = "Studying";
 	}
 	else{
 	document.getElementById("start").innerHTML = "Start Studying";
 	}
-	
-	var viewTime = document.getElementById("time");
-	viewTime = view_time();
 };
 
-  /**
+/*   /**
    * updates time Display every 1000 ms
-   */
+   *
   function view_time() {
          setInterval(function () {
           document.getElementById("time").innerHTML = formatTime();
          }, 1000);
 
-  }
+  } */
 function pause_time(){
     bg.Pause();
 
@@ -52,7 +43,7 @@ function pause_time(){
   function start_time() {
 
       bg.Start();
-      document.getElementById("start").innerHTML = "Studying";
+      document.getElementById("start").value = "Studying";
   }
 
 

@@ -101,6 +101,10 @@ function store_good_sec(aValue)
 
 function get_good_store()
 {
+	if(!storageGood)
+	{
+		storageGood = 0;
+	}
 	return storageGood
 }
 
@@ -112,7 +116,10 @@ function store_bad_sec(aValue)
 
 function get_bad_store()
 {
-	alert("here: " + storageBad)
+	if(!storageBad)
+	{
+		storageBad = 0;
+	}
 	return storageBad
 }
 //Author: Luke Dercher
