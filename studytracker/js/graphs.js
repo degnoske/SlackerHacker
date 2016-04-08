@@ -24,7 +24,9 @@ google.charts.setOnLoadCallback(makeGraphs);
       }
 	  
 	  //"Javascript "class" for a daily productivity graph
-//
+//@author Luke Weber
+//@pre aTitle = title for graph, aArrayOfSites = array of sites that will be added to graph, aArrayOfTime = array of times corresponding to time on sites, aWidth = width of graph
+//@return a Pie chart graph object.
 function DailyGraph(aTitle, aArrayOfSites, aArrayOfTime, aWidth, aHeight, aHtmlId)
 {
 	this.lTitle = aTitle;
@@ -62,8 +64,9 @@ function DailyGraph(aTitle, aArrayOfSites, aArrayOfTime, aWidth, aHeight, aHtmlI
 	this.draw = function(){this.Chart.draw(lData, this.options)}
 }
 
-//"Javascript "class" for a daily productivity graph
-//
+//@author Luke Weber
+//@pre aTitle = title for graph, a'Day' =  how much time productive on 'Day', aWidth = width of graph
+//@return a Pie chart graph object.
 function WeeklyGraph(aTitle, aMonday, aTuesday, aWednesday, aThursday, aFriday, aWidth, aHeight, aHtmlId)
 {
 	this.lTitle = aTitle;
@@ -97,7 +100,9 @@ function WeeklyGraph(aTitle, aMonday, aTuesday, aWednesday, aThursday, aFriday, 
 	
 	this.draw = function(){this.Chart.draw(lData, this.options)}
 }
-
+//@author Luke Weber
+//@pre none
+//@return none
 function makeGraphs()
 {
 	var lKey = "GoodTimer"
