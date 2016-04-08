@@ -24,12 +24,23 @@ function StorageObj(aKey)
 
 function runeverything()
 {
-  var myStorage = new StorageObj('cool');
+  var myStorage = new StorageObj('rad');
   myStorage.setValue(2);
-  myStorage.getValue();
+}
+
+function testStorage()
+{
+	var myStorage = new StorageObj('rad');
+	myStorage.getValue();
 }
 
 window.onload = function()
 {
   runeverything();
-}
+	
+	
+   
+    var lbutton = document.getElementById("buttonid");
+    lbutton.onclick = testStorage;
+	
+};
