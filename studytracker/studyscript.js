@@ -1,4 +1,4 @@
-/*author: Dylan Egnoske, Luke Dercher
+/* @author: Dylan Egnoske, Luke Dercher
    This js file runs the functions in background.js when the appropirate buttons are pressed. */
  var bg = chrome.extension.getBackgroundPage();
  
