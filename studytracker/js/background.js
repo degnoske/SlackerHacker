@@ -1,4 +1,5 @@
 //Author: SRI GAYATRI
+
 chrome.webNavigation.onCompleted.addListener(function(e)
 	{
 		var activeTab = window.location.hostname; 
@@ -16,22 +17,24 @@ chrome.webNavigation.onCompleted.addListener(function(e)
 					$('#foo').html(data);
 					if(document.getElementById("foo").innerHTML == 1)
 					{
-						//Author Luke Dercher
+						if(get_isStarted()==true){
+						//Authors: Luke Dercher, Dylan Egnoske
 						var port = chrome.runtime.connect({name: "message"});
-						port.postMessage({message: "pause"});
-
+						
+						
 						if (confirm("Are you sure you want get on social media? (Click Cancel to redirect to Google") == true) 
 						{
 							BadStart();
 							Pause();
 					   	 } 
+					   	 
 					   	 else 
 					   	 {
-							chrome.tabs.update({url: "https://www.google.com"});
-							window.close();
-							Start();
+					   	  chrome.tabs.update({url: "https://www.google.com"});
+   						
 					   	 }
 					   	
+					  }
 					}
 				});
 			});
@@ -40,16 +43,18 @@ chrome.webNavigation.onCompleted.addListener(function(e)
 		
 		
 	});
+	
 //Author: Dylan Egnoske
 var sec=0;
 var myTime;
 var isStarted=false;
 
 function Start(){
-	if (isStarted == false) {
+	if (get_isStarted() == false) {
 		set_isStarted(true);
 		myTime = setInterval(counter, 1000);
 		set_interval(myTime);
+		BadStop();
 	}
 }
 
@@ -94,35 +99,6 @@ function get_sec(){
 
 }
 
-var storageGood
-function store_good_sec(aValue)
-{
-	storageGood = aValue
-}
-
-function get_good_store()
-{
-	if(!storageGood)
-	{
-		storageGood = 0;
-	}
-	return storageGood
-}
-
-var storageBad
-function store_bad_sec(aValue)
-{
-	storageBad = aValue
-}
-
-function get_bad_store()
-{
-	if(!storageBad)
-	{
-		storageBad = 0;
-	}
-	return storageBad
-}
 //Author: Luke Dercher
 ///////////////////
 ////Bad Timer/////
@@ -134,9 +110,8 @@ var isBadStarted=false;
 
 function BadStart(){
 	if (isBadStarted == false) {
-		
 		set_isBadStarted(true);
-		bad_Time = setInterval(Badcounter, 1000);
+		bad_Time = setInterval(counter, 1000);
 		set_interval(bad_time);
 	}
 }
@@ -157,7 +132,8 @@ function BadPause(){
 function Badcounter() {
 
 	bad_sec++;
-	set_Badsec(bad_sec);
+
+	set_sec(bad_sec);
 }
 function set_isBadStarted(bool){
 	isBadStarted=bool;
