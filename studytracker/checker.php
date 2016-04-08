@@ -1,15 +1,19 @@
-
 <?php
+//Author: Sri Gayatri
+header("Access-Control-Allow-Origin: chrome-extension://bkbihbecgjnokgfooaegbjapefiekepp");
+$data1 = $_POST['dataToSendToServer1'];
+$data2 = $_POST['dataToSendToServer2'];
+
 $mysqli = new mysqli("mysql.eecs.ku.edu", "psundara", "sripassword", "psundara");
 if ($mysqli->connect_errno) 
 {
     die("Connection failed: " . $mysqli->connect_error);
 
 }
-$siteName = $_POST['dataToSendToServer1'];
 $isFound = 0;
 
-$result = $mysqli->query("SELECT url FROM usertest WHERE url = $sitename");
+$result = $mysqli->query("SELECT url FROM usertest WHERE url = '$data1'");
+
 if($result && mysqli_num_rows($result)>0)
 {
 	$isFound = 1;
