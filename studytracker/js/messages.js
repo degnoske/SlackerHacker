@@ -27,7 +27,8 @@ function bgTimer() {
 	"Fill your lunch with vegetable and healthy options.",
 	"Drinking tea can boost your metabolism.",
 	"Tired? How's about a short nap?",
-	"'Excuses burn zero calories. Get up!' - Vuong Nguyen",
+	"Excuses burn zero calories. Get up!",
+	"Still working? Take a \<\ br \/ \>",
 	"Dream and believe in your dreams...when you sleep.",
 	"Still working? Grab some coffee."
 	];
@@ -51,15 +52,18 @@ function bgTimer() {
 	} else if (h>14 && h <=16) {
 		$(".intro").addClass("nap");
 		document.getElementById("reminders").innerHTML = reminder[4];
-	} else if (h>16 && h < 19) {
+	} else if (h>16 && h <= 20) {
 		$(".intro").addClass("run");
 		document.getElementById("reminders").innerHTML = reminder[5];
-	} else if (h>21 && h<=23) {
-		$(".intro").addClass("dream");
+	} else if (h> 20 && h<=22) {
+		$(".intro").addClass("animal");
 		document.getElementById("reminders").innerHTML = reminder[6];
+	} else if (h>22 && h<=23) {
+		$(".intro").addClass("dream");
+		document.getElementById("reminders").innerHTML = reminder[7];
 	} else if (h >= 0 && h <=5) {
 		$(".intro").addClass("coffee");
-		document.getElementById("reminders").innerHTML = reminder[7];
+		document.getElementById("reminders").innerHTML = reminder[9];
 	} 
     var t = setTimeout(bgTimer, 500);
 }

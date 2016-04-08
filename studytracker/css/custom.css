@@ -145,7 +145,7 @@ a:focus {
     -o-background-size: cover;
 }
 .intro.breakfast {
-	background-image: url('../img/breakfast.jpg');
+	background-image: url('../img/breakfast2.jpg');
 }
 .intro.water {
 	background-image: url('../img/water.jpg');
@@ -161,6 +161,9 @@ a:focus {
 }
 .intro.run {
 	background-image: url('../img/run.jpg');
+}
+.intro.animal {
+	background-image: url('../img/chipmunk.jpg');
 }
 .intro.dream {
 	background-image: url('../img/dream.jpg');
