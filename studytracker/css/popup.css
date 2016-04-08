@@ -1,0 +1,12 @@
+p.groove {
+  border-style: groove;
+}
+body{
+	background-color: lightgrey;
+	min-width:170px;
+}
+ul{
+	list-style-type:none;
+	margin: 0; 
+	padding: 0;
+  }

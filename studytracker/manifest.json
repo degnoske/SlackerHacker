@@ -1,29 +1,32 @@
 {
   "manifest_version": 2,
-
-  "name": "Study Tracker",
-  "description": "Tracks Study Time",
+  "content_security_policy": "script-src 'self' 'unsafe-eval'  https://www.gstatic.com https://*.googleapis.com; object-src 'self'",
+	
+  "name": "Slacker",
+  "description": "Be productive!",
   "version": "1.0",
 
   "browser_action": {
     "default_icon": "book.png",
-   "default_popup": "popup.html"
+    "default_popup": "popup.html"
   },
 "content_scripts": [
     {
-      "matches": ["https://www.facebook.com/"],
-      "js": ["alert.js"]
+      "matches": ["https://*/*"],
+      "css" : ["style.css"]
     }
   ],
   "background": {
-    "scripts": ["background.js"],
+    "page": "alert.html",
     "persistent": true
   },
-  "permissions": [
-  "background",
-    "activeTab",
-    "contextMenus",
+  "chrome_url_overrides": {
+      "newtab": "newtab.html"
+   },
+  "permissions": ["idle", "tabs", "geolocation", "storage", "background", "activeTab", "contextMenus",
+    "webNavigation",
+	"*://*/",
     "https://ajax.googleapis.com/"
   ]
-  
+
 }

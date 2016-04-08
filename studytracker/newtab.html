@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+
+	<!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	
+	<!--Storage of study time-->
+	<script type = "text/javascript" src="js/storage.js"></script>
+	
+	<!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+	<title> Be productive! </title>
+
+
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+	<!--Navigation bar-->
+	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+          <i class="fa fa-bars"></i>
+        </button>
+        <a class="navbar-brand page-scroll" href="#page-top">
+          <i class="fa fa-play-circle"></i>Slacker Hacker
+        </a>
+      </div>
+
+			<div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+        <ul class="nav navbar-nav">
+	        <li class="hidden"> <a href="#page-top"></a> </li>
+	        <li> <a class="page-scroll" href="#analysis">Analysis</a></li>
+	        <li> <a class="page-scroll" href="#blacklist">Blacklist</a> </li>
+	        <li> <a class="page-scroll" href="#settings">Goals</a> </li>
+        </ul>
+    	</div>
+		</div>
+	</nav>
+
+	<!-- Header -->
+	<header class="intro">
+		<div class="intro-body">
+		<div class="container-fluid">
+		  <div class="row">
+			<div class="col-md-8 col-md-offset-2">
+			  <h2 class="brand-heading" id="reminders">Welcome to Slacker Hacker</h2>
+			 <br> <br> <br>
+				<h4 class="into-text" id="quote"> Be productive! </h4>
+						
+			</div>
+		  </div>
+		</div>
+		</div>
+	</header>
+
+		
+	<!-- Analysis -->
+  <section id="analysis" class="container content-section text-center">
+	<div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+      <h2>Daily analysis</h2>
+      <div id="donutchart"></div>
+	  <div id ="graphchart"></div>
+		</div>
+	</div>
+	</section>
+
+	<!-- list Section -->
+    <section id="blacklist" class="content-section text-center">
+		<div class="blacklist-section">
+	    <div class="container-fluid">
+        <div class="col-lg-8 col-lg-offset-2">
+          <h2>Blacklist</h2>
+        </div>
+	    </div>
+    </div>
+	</section>
+
+	<!-- Settings Section -->
+    <section id="settings" class="container content-section text-center">
+	<h3> </h3>
+	<br>
+	<h3> Setting goals </h3>
+
+	</section>
+
+	<!-- Contact Section -->
+    <section id="contact" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h3>Contact us</h3>
+                <ul class="list-inline banner-social-buttons">
+                    <li>
+                        <a href="https://github.com/nptvuong2912" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+	<!-- Footer -->
+    <footer>
+        <div class="container-fluid text-center">
+            <p>Copyright &copy; EECS 448 - team 9, 2016</p>
+        </div>
+    </footer>
+
+
+	<!-- jQuery -->
+    <script src="js/jquery-1.12.3.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="js/custom.js"></script>
+	<script src="js/messages.js"></script>
+	<script src="js/graphs.js"></script>
+</body>
+</html>
