@@ -1,3 +1,6 @@
+//@author Vuong Nguyen
+//@pre an array of reminders, bgTimer() 
+//@return Main function. Display the random reminders and call bgTimer() to change the background img
 (function() {
   
   var quotes = [
@@ -20,6 +23,9 @@
 	
 })(); 
 
+//@author Vuong Nguyen
+//@pre Load the real time clock from JavaScript, an array of reminders 
+//@return Based on the clock time, use jQuery to change the background image, display the suitable reminder
 function bgTimer() {
 	var reminder = [
     "A good breakfast will kick off your day!",
