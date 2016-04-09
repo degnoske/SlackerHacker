@@ -1,8 +1,10 @@
 
 
-//@author Luke Weber
-//@pre-The key for the store
-//@return- create storage obj;
+/**
+ * @author Luke Weber
+ * @pre The key for the store
+ * @return create storage obj;
+ */
 function StorageObj(aKey)
 {
     this.mKey = aKey;
@@ -22,8 +24,10 @@ function StorageObj(aKey)
       })
     } */
 	
-	//@author Luke Weber
-	//@pre- the value to send to storage.
+	/**
+     * @author Luke Weber
+     * @pre the value to send to storage.
+     */
     this.setValue = function(aVal)
     {
       var obj = {};
