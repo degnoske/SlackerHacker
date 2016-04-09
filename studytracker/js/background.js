@@ -1,4 +1,3 @@
-
 chrome.webNavigation.onCompleted.addListener(function(e)
 {
 	var activeTab = window.location.hostname;
@@ -24,12 +23,15 @@ chrome.webNavigation.onCompleted.addListener(function(e)
 						if (confirm("Are you sure you want get on social media? (Click Cancel to redirect to Google") == true)
 						{
 							BadStart();
-							Pause();
+							Stop();
 						}
 
 						else
 						{
+
+							Start();
 							chrome.tabs.update({url: "https://www.google.com"});
+							BadStop();
 
 						}
 					}
@@ -142,7 +144,7 @@ var isBadStarted=false;
 function BadStart(){
 	if (isBadStarted == false) {
 		set_isBadStarted(true);
-		bad_Time = setInterval(counter, 1000);
+		bad_Time = setInterval(Badcounter, 1000);
 		set_interval(bad_time);
 	}
 }
@@ -152,7 +154,7 @@ function BadStart(){
  */
 function BadStop(){
 
-	clearInterval(get_interval());
+	clearInterval(get_Badinterval());
 	set_isSBadtarted(false);
 	set_Badsec(0);
 }
@@ -173,7 +175,7 @@ function Badcounter() {
 
 	bad_sec++;
 
-	set_sec(bad_sec);
+	set_Badsec(bad_sec);
 }
 /**
  * @author Luke Dercher
@@ -272,4 +274,3 @@ chrome.runtime.onConnect.addListener(function(port)
 		}
 	});
 });
-
