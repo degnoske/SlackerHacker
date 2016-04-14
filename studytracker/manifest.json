@@ -10,12 +10,7 @@
     "default_icon": "book.png",
     "default_popup": "popup.html"
   },
-"content_scripts": [
-    {
-      "matches": ["https://*/*"]
-      
-    }
-  ],
+
   "background": {
     "page": "alert.html",
     "persistent": true
