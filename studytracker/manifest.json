@@ -14,7 +14,6 @@
     {
       "matches": ["https://*/*"],
       
-      //"css" : ["style.css"]
     }
   ],
   "background": {
