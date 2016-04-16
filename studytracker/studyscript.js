@@ -1,69 +1,40 @@
-/**
- *  @author Dylan Egnoske, Luke Dercher
- *This js file runs the functions in background.js when the appropirate buttons are pressed.
- */
-var bg = chrome.extension.getBackgroundPage();
 
-
-window.onload = function() {
+ var bg = chrome.extension.getBackgroundPage();
+  var port = chrome.runtime.connect({name: "exTimers"});
 
 
 
-    var start = document.getElementById("start");
-    start.onclick = start_time;
+  /**
+   * updates time Display every 1000 ms
+   */
+  //function view_time() {
+    //     setInterval(function () {
+      //    document.getElementById("time").innerHTML = formatTime();
+      //   }, 1000);
 
-
-    var pause = document.getElementById("pause");
-    pause.onclick=pause_time;
-
-
-
-    var stop = document.getElementById("stop");
-    stop.onclick=stop_time;
-
-
-    if(bg.get_isStarted()==true){
-        document.getElementById("start").value = "Studying";
-    }
-    else{
-        document.getElementById("start").innerHTML = "Start Studying";
-    }
-};
-
-/**
- * @author Dylan Egnoske
- * @returns null
- */
+  //}
 function pause_time(){
-    bg.Pause();
-
+    port.postMessage({timer: "Pause"});
 }
-/**
- * @author Dylan Egnoske
- * @returns null
- */
-function start_time() {
+  function start_time() {
 
-    bg.Start();
-    document.getElementById("start").value = "Studying";
-}
+      port.postMessage({timer: "Start"});
+      document.getElementById("start").innerHTML = "Studying";
+  }
 
-/**
- * @author Dylan Egnoske
- * @returns null
- */
+
 
 function stop_time() {
 
-    bg.Stop();
+    port.postMessage({timer: "Stop"});
     document.getElementById("start").innerHTML = "Start Studying!";
 }
-/**
- *
- * @returns Formatted Time String
- */
-function formatTime(){
-    var totalsec= bg.get_sec();
+  /**
+   *
+   * @returns Formatted Time String
+   */
+  function formatTime(){
+   var totalsec= bg.goodTimer.get_sec();
 
     var hr  = Math.floor(totalsec / 3600);
     var min = Math.floor((totalsec - (hr * 3600))/60);
@@ -77,6 +48,28 @@ function formatTime(){
 
 }
 
+    var start = document.getElementById("start");
+    start.onclick = start_time();
+
+    //var view = document.getElementById("view");
+   //view.onclick = view_time;
+
+
+    var pause = document.getElementById("pause");
+    pause.onclick=pause_time();
+
+    //var resume = document.getElementById("resume");
+    //resume.onclick=start_time;
+
+    var stop = document.getElementById("stop");
+    stop.onclick=stop_time();
+
+	//var viewStats = document.getElementById("viewStats");
+	//viewStats.onclick=Hello;
+
+
+	//var viewTime = document.getElementById("time");
+	//viewTime = view_time();
 
 
 //taken from this example http://stackoverflow.com/questions/6132018/how-can-i-get-the-current-tab-url-for-chrome-extension
@@ -87,13 +80,10 @@ function formatTime(){
      // the return variable should only have one entry
      var activeTab = arrayOfTabs[0];
      var activeTabURL = activeTab.url;; // or do whatever you need
-	
+
 	if(activeTabURL == "https://www.facebook.com/")
-	{	
+	{
 		//do something here
 
 	}
   });*/
-
-
-	
