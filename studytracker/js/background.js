@@ -1,86 +1,101 @@
-Timer = function (webString)
+function Timer(webString)
 {
 
-  var timerName = webString;
-  var sec=0;
-  var myTime;
-  var isStarted=false;
+  this.timerName = "webString";
+  this.sec=0;
+  this.myTime;
+  this.isStarted=false;
 
-  funtion getName ()
+  this.getName = function()
   {
-    return timerName;
-  }
+    return this.timerName;
+  };
 
-  function Start()
+  this.Start = function()
   {
-    	if (get_isStarted() == false)
+    	if (this.get_isStarted() == false)
       {
-    		set_isStarted(true);
-    		myTime = setInterval(counter, 1000);
-    		set_interval(myTime);
+    		this.set_isStarted(true);
+    		this.myTime = setInterval(this.counter(), 1000);
+    		this.set_interval(this.myTime);
     	}
-  }
+      console.log("timer started");
+  };
 
-  function Stop()
+  this.Stop = function()
   {
-  	clearInterval(get_interval());
-  	set_isStarted(false);
-  	set_sec(0);
-  }
+  	clearInterval(this.get_interval());
+  	this.set_isStarted(false);
+  	this.set_sec(0);
+    console.log("timer stopped");
+  };
 
-  function Pause()
+  this.Pause= function()
   {
-  	clearInterval(get_interval());
-  	set_isStarted(false);
-  }
+  	clearInterval(this.get_interval());
+  	this.set_isStarted(false);
+    console.log("timer paused");
+  };
 
-  function counter()
+  this.set_sec = function (second)
   {
-  	sec++;
-  	set_sec(sec);
-  }
+    this.sec=second;
+  };
 
-  function set_isStarted(bool)
+  this.counter = function()
   {
-  	isStarted=bool;
-  }
+  	this.sec++;
+  	this.set_sec(this.sec);
+  };
 
-  function get_isStarted()
+  this.set_isStarted = function(bool)
   {
-  	return isStarted;
-  }
+  	this.isStarted=bool;
+  };
 
-
-  function set_interval(interval)
+  this.get_isStarted = function()
   {
-  	myTime=interval;
-  }
+  	return this.isStarted;
+  };
 
-  function set_sec(second)
+
+  this.set_interval = function(interval)
   {
-  	sec=second;
-  }
+  	this.myTime=interval;
+  };
 
-  function get_interval()
+
+
+  this.get_interval = function ()
   {
-  	return myTime;
-  }
+  	return this.myTime;
+  };
 
-  function get_sec()
+  this.get_sec = function()
   {
-  	return sec;
-  }
-
+  	return this.sec;
+  };
 
 }
 
 
-	var goodTimer = new Timer();
+	var goodTimer = new Timer(goodTimer);
 
-	var badTimer = new Timer();
+	var badTimer = new Timer(badTimer);
 
 	var TimerArr = [];
 
+  chrome.runtime.onConnect.addListener(function(port) {
+    console.assert(port.name == "exTimers");
+    port.onMessage.addListener(function(msg) {
+      if (msg.timer == "Start")
+        goodTimer.Start();
+      else if (msg.timer == "Stop")
+        goodTimer.Stop();
+      else if (msg.timer == "Pause")
+        goodTimer.Pause();
+    });
+  });
 
 
 chrome.webNavigation.onCompleted.addListener(function(e)
@@ -124,27 +139,4 @@ chrome.webNavigation.onCompleted.addListener(function(e)
 			});
 		});
 	}
-});
-
-
-//@author Dylan Egnoske, Luke Dercher
-//This line opens up a long-lived connection to your background page.
-chrome.runtime.onConnect.addListener(function(port)
-{
-	console.assert(port.name == "message");
-	port.onMessage.addListener(function(msg)
-	{
-		if (msg.message == "pause")
-		{
-			goodTimer.Pause();
-		}
-		else if (msg.message == "startBad")
-		{
-			badTimer.Start();
-		}
-		else if (msg.message == "start")
-		{
-			goodTimer.Start();
-		}
-	});
 });
