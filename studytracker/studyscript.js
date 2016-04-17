@@ -49,20 +49,20 @@ function stop_time() {
 
 window.onload = function() {
     var start = document.getElementById("start");
-    start.onclick = start_time();
+    start.onclick = start_time;
 
     //var view = document.getElementById("view");
    //view.onclick = view_time;
 
 
     var pause = document.getElementById("pause");
-    pause.onclick=pause_time();
+    pause.onclick=pause_time;
 
     //var resume = document.getElementById("resume");
     //resume.onclick=start_time;
 
     var stop = document.getElementById("stop");
-    stop.onclick=stop_time();
+    stop.onclick=stop_time;
 
     if(flag == 1)
     {
