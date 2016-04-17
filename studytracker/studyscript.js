@@ -11,7 +11,7 @@
     //     setInterval(function () {
       //    document.getElementById("time").innerHTML = formatTime();
       //   }, 1000);
-
+var flag = 0;
   //}
 function pause_time(){
     port.postMessage({timer: "Pause"});
@@ -19,15 +19,13 @@ function pause_time(){
   function start_time() {
 
       port.postMessage({timer: "Start"});
-      document.getElementById("start").innerHTML = "Studying";
+      flag = 1;
   }
-
-
 
 function stop_time() {
 
     port.postMessage({timer: "Stop"});
-    document.getElementById("start").innerHTML = "Start Studying!";
+    flag = 2;
 }
   /**
    *
@@ -48,6 +46,8 @@ function stop_time() {
 
 }
 
+
+window.onload = function() {
     var start = document.getElementById("start");
     start.onclick = start_time();
 
@@ -63,6 +63,16 @@ function stop_time() {
 
     var stop = document.getElementById("stop");
     stop.onclick=stop_time();
+
+    if(flag == 1)
+    {
+      document.getElementById("start").value = "Studying";
+    }
+    else if (flag == 2)
+    {
+      document.getElementById("start").value = "Start Studying!";
+    }
+  }
 
 	//var viewStats = document.getElementById("viewStats");
 	//viewStats.onclick=Hello;
