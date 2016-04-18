@@ -1,6 +1,7 @@
 
  var bg = chrome.extension.getBackgroundPage();
  
+ var goodTimer = bg.getGoodTimer()
  
 window.onload = function() {
 	
@@ -25,7 +26,7 @@ window.onload = function() {
 	//var viewStats = document.getElementById("viewStats");
 	//viewStats.onclick=Hello;
 
-	if(bg.get_isStarted()==true){
+	if(goodTimer.get_isStarted()==true){
 	document.getElementById("start").value = "Studying";
 	}
 	else{
@@ -46,12 +47,12 @@ window.onload = function() {
 
   //}
 function pause_time(){
-    bg.Pause();
+    goodTimer.Pause();
 
 }
   function start_time() {
 
-      bg.Start();
+      goodTimer.Start();
       document.getElementById("start").innerHTML = "Studying";
   }
 
@@ -59,7 +60,7 @@ function pause_time(){
 
 function stop_time() {
 
-    bg.Stop();
+    goodTimer.Stop();
     document.getElementById("start").innerHTML = "Start Studying!";
 }
   /**
@@ -67,7 +68,7 @@ function stop_time() {
    * @returns Formatted Time String
    */
   function formatTime(){
-   var totalsec= bg.get_sec();
+   var totalsec= goodTimer.get_sec();
 
     var hr  = Math.floor(totalsec / 3600);
     var min = Math.floor((totalsec - (hr * 3600))/60);
