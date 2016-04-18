@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
 
 	<!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -34,27 +32,26 @@
 
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-
 	<!--Navigation bar-->
 	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-          <i class="fa fa-bars"></i>
-        </button>
-        <a class="navbar-brand page-scroll" href="#page-top">
-          <i class="fa fa-play-circle"></i>Slacker Hacker
-        </a>
-      </div>
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+				  <i class="fa fa-bars"></i>
+				</button>
+				<a class="navbar-brand page-scroll" href="#page-top">
+				  <i class="fa fa-play-circle"></i>Slacker Hacker
+				</a>
+			</div>
 
 			<div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-        <ul class="nav navbar-nav">
-	        <li class="hidden"> <a href="#page-top"></a> </li>
-	        <li> <a class="page-scroll" href="#analysis">Analysis</a></li>
-	        <li> <a class="page-scroll" href="#blacklist">Blacklist</a> </li>
-	        <li> <a class="page-scroll" href="#settings">Goals</a> </li>
-        </ul>
-    	</div>
+				<ul class="nav navbar-nav">
+					<li class="hidden"> <a href="#page-top"></a> </li>
+					<li> <a class="page-scroll" href="#analysis">Analysis</a></li>
+					<li> <a class="page-scroll" href="#blacklist">Blacklist</a> </li>
+					<li> <a class="page-scroll" href="#settings">Goals</a> </li>
+				</ul>
+			</div>
 		</div>
 	</nav>
 
@@ -78,10 +75,10 @@
 	<!-- Analysis -->
   <section id="analysis" class="container content-section text-center">
 	<div class="row">
-    <div class="col-lg-8 col-lg-offset-2">
-      <h2>Daily analysis</h2>
-      <div id="donutchart"></div>
-	  <div id ="graphchart"></div>
+		<div class="col-lg-8 col-lg-offset-2">
+		  <h2>Daily analysis</h2>
+		  <div id="donutchart"></div>
+		  <div id ="graphchart"></div>
 		</div>
 	</div>
 	</section>
@@ -89,39 +86,42 @@
 	<!-- list Section -->
     <section id="blacklist" class="content-section text-center">
 		<div class="blacklist-section">
-	    <div class="container-fluid">
-        <div class="col-lg-8 col-lg-offset-2">
-          <h2>Blacklist</h2>
-		  <p> Add more website to your block list to increase productivity! </p>
-			<!-- <form method="post" id="blacklist-form">
-				<div id="category-div" class="form-div">
-					<label>Category: </label> <br> <input type="text" name="category" required> 
+			<div class="container-fluid">
+				<div class="col-lg-8 col-lg-offset-2">
+				  <h2>Blacklist</h2>
+				  <p> Add more website to your block list to increase productivity! </p>
+					<!-- <form method="post" id="blacklist-form">
+						<div id="category-div" class="form-div">
+							<label>Category: </label> <br> <input type="text" name="category" required> 
+						</div>
+						<div id="url-div" class="form-div">
+							<label>Website URL:</label> <br> <input type="text" name="url" required> 
+						</div>
+						<br>
+						<input type="submit" value="Submit">
+					</form> -->
+					<a href="http://people.eecs.ku.edu/~psundara/exten/BlockSite.html">Click here to block websites</a>
 				</div>
-				<div id="url-div" class="form-div">
-					<label>Website URL:</label> <br> <input type="text" name="url" required> 
-				</div>
-				<br>
-				<input type="submit" value="Submit">
-			</form> -->
-			<a href="http://people.eecs.ku.edu/~psundara/exten/BlockSite.html">Click here to block websites</a>
-        </div>
-	    </div>
-    </div>
+			</div>
+		</div>
 	</section>
 
 	<!-- Settings Section -->
     <section id="settings" class="container content-section text-center">
-	<h3> </h3>
-	<br>
-	<h3> To do list </h3>
-	<form method="post" action="CreatePosts.php" >
-        
-      <div id="post-div" >
-         <label>Add a goal: </label> <input type="text" name="post" placeholder="Set your goals for today..." size="35"> 
-      </div>    
-      <br>
-      <input type="submit" value="Save">
-    </form>
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2">
+			
+				<h3> To do list </h3>
+				<form method="post" action="CreatePosts.php" >
+					
+				  <div id="post-div" >
+					 <label>Add a goal: </label> <input type="text" name="post" placeholder="Set your goals for today..." size="35"> 
+				  </div>    
+				  <br>
+				  <input type="submit" value="Save">
+				</form>
+			</div>	
+		</div>	
 	</section>
 
 	<!-- Contact Section -->
