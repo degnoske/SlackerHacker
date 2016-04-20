@@ -7,6 +7,16 @@ var badTimer = new Timer('badTimer');
 
 var TimerArr = [];
 
+function changeDevDisp(){
+		console.log("changing start val");
+	if(goodTimer.get_isStarted() == true)
+	{
+		document.getElementById('startPage').innerHTML = "timer started";
+	}
+}
+
+setInterval(changeDevDisp(),1000);
+
 //@Author Luke Weber
 //@pre The url of site
 function addSiteTimer(aURL)
@@ -62,7 +72,7 @@ function checkSite(aURL)
 			//post arguments php page, data to send[] , function to run on callback
 		  var jqxhr = $.post
 		  (
-		  "http://people.eecs.ku.edu/~psundara/exten/checker.php", {dataToSendToServer1: domain, dataToSendToServer2: "server"}, 
+		  "http://people.eecs.ku.edu/~psundara/exten/checker.php", {dataToSendToServer1: domain, dataToSendToServer2: "server"},
 			  function(data)
 			  {
 				//store boolean on HTML then retrieve that boolean
@@ -77,9 +87,9 @@ function checkSite(aURL)
 			  }
 		  )
 		}
-		
+
 	)
-	
+
   }
 }
 
