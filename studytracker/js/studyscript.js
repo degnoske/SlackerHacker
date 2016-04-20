@@ -30,7 +30,7 @@ window.onload = function() {
 	document.getElementById("start").value = "Studying";
 	}
 	else{
-	document.getElementById("start").innerHTML = "Start Studying";
+	document.getElementById("start").value = "Start Studying";
 	}
 	
 	//var viewTime = document.getElementById("time");
