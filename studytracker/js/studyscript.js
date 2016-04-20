@@ -5,6 +5,8 @@
 
 window.onload = function() {
 
+    var devMode = document.getElementById('devMode');
+    devMode.onclick = developerMode;
 
 
     var start = document.getElementById("start");
@@ -46,6 +48,12 @@ window.onload = function() {
       //   }, 1000);
 
   //}
+function developerMode()
+{
+  console.log("called devMode");
+  chrome.tabs.update({url: "backgroundPage.html"});
+}
+
 function pause_time(){
     goodTimer.Pause();
     document.getElementById("start").value = "Start Studying";
