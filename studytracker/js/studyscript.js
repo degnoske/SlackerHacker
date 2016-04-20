@@ -1,12 +1,12 @@
 
  var bg = chrome.extension.getBackgroundPage();
- 
+
  var goodTimer = bg.getGoodTimer()
- 
+
 window.onload = function() {
-	
-	
-   
+
+
+
     var start = document.getElementById("start");
     start.onclick = start_time;
 
@@ -22,7 +22,7 @@ window.onload = function() {
 
     var stop = document.getElementById("stop");
     stop.onclick=stop_time;
-	
+
 	//var viewStats = document.getElementById("viewStats");
 	//viewStats.onclick=Hello;
 
@@ -32,7 +32,7 @@ window.onload = function() {
 	else{
 	document.getElementById("start").value = "Start Studying";
 	}
-	
+
 	//var viewTime = document.getElementById("time");
 	//viewTime = view_time();
 };
@@ -48,12 +48,13 @@ window.onload = function() {
   //}
 function pause_time(){
     goodTimer.Pause();
+    document.getElementById("start").value = "Start Studying";
 
 }
   function start_time() {
 
       goodTimer.Start();
-      document.getElementById("start").innerHTML = "Studying";
+      document.getElementById("start").value = "Studying";
   }
 
 
@@ -61,7 +62,7 @@ function pause_time(){
 function stop_time() {
 
     goodTimer.Stop();
-    document.getElementById("start").innerHTML = "Start Studying!";
+    document.getElementById("start").value = "Start Studying!";
 }
   /**
    *
@@ -91,13 +92,10 @@ function stop_time() {
      // the return variable should only have one entry
      var activeTab = arrayOfTabs[0];
      var activeTabURL = activeTab.url;; // or do whatever you need
-	
+
 	if(activeTabURL == "https://www.facebook.com/")
-	{	
+	{
 		//do something here
 
 	}
   });*/
-
-
-	
