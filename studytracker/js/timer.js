@@ -1,7 +1,7 @@
 function Timer(webString)
 {
-
-  this.timerName = "webString";
+	console.log(webString+ " Timer created " + Date.now())
+  this.timerName = webString;
   this.sec=0;
   this.myTime;
   this.isStarted=false;
@@ -51,6 +51,7 @@ function Timer(webString)
 
   this.set_isStarted = function(bool)
   {
+	 console.log(this.getName() + " timer is started.")
   	this.isStarted=bool;
   };
 

@@ -9,13 +9,14 @@ var TimerArr = [];
 
 function changeDevDisp(){
 		console.log("changing start val");
-	if(goodTimer.get_isStarted() == true)
+
+	if(goodTimer.get_isStarted())
 	{
 		document.getElementById('startPage').innerHTML = "timer started";
 	}
 }
 
-setInterval(changeDevDisp(),1000);
+setInterval(changeDevDisp,1000);
 
 //@Author Luke Weber
 //@pre The url of site
@@ -26,6 +27,7 @@ function addSiteTimer(aURL)
 
 function getGoodTimer()
 {
+	console.log(goodTimer.getName());
 	return goodTimer;
 }
 
