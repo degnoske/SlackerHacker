@@ -29,7 +29,7 @@
    return("Study Time: " + hr + ":" + min + ":" + sec);
 
  }
-
+//displays bad time clock
  function formatbadTime(){
    var hr,min,sec,totalsec;
    if(bg.badTimer.get_isStarted())
@@ -102,5 +102,5 @@ function changeDevDisp(){
 
 }
 
-
+//changedisp is called every second to keep updateing the page
 setInterval(changeDevDisp,1000);
