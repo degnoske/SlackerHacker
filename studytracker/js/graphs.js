@@ -18,9 +18,15 @@ google.charts.setOnLoadCallback(makeGraphs);
 		  'width': 300,
 		  'height':200
         };
-
+		//var chdiv = document.getElementById('donutchart'); 
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+		google.visualization.events.addListener(chart, 'ready', function () {
+			document.getElementById('png').outerHTML = '<a href="' + chart.getImageURI() + '">Printable version - Random graph </a>';
+			//console.log(chdiv.innerHTML);
+      }) 
         chart.draw(data, options);
+		
+		
       }
 	  
 	  //"Javascript "class" for a daily productivity graph
@@ -61,7 +67,9 @@ function DailyGraph(aTitle, aArrayOfSites, aArrayOfTime, aWidth, aHeight, aHtmlI
 	
 	this.Chart = new google.visualization.PieChart(document.getElementById(aHtmlId));
 	
-	this.draw = function(){this.Chart.draw(lData, this.options)}
+	this.draw = function(){
+		this.Chart.draw(lData, this.options);
+	}
 }
 
 //@author Luke Weber
@@ -141,9 +149,15 @@ function makeGraphs()
 	}
 	else
 	{	
-		var Pie = new DailyGraph("Study Time", ['Study', 'Not Studing'], [bg.get_good_store(), bg.get_bad_store()], 300, 200, 'graphchart')
+		var Pie = new DailyGraph("Study Time", ['Study', 'Not Studing'], [bg.get_good_store(), bg.get_bad_store()], 300, 200, 'graphchart');
+		
+        //var chart = new google.visualization.PieChart(document.getElementById('graphchart'));
+		google.visualization.events.addListener(Pie.Chart, 'ready', function () {
+			document.getElementById('png1').outerHTML = '<a href="' + Pie.Chart.getImageURI() + '">Printable version - Daily productivity </a>';
+		})
 		Pie.draw();
 	}
+	
 	drawChart();
 	
 }
