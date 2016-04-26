@@ -18,55 +18,51 @@ google.charts.setOnLoadCallback(makeGraphs);
 		  'width': 300,
 		  'height':200
         };
-		//var chdiv = document.getElementById('donutchart'); 
+		//var chdiv = document.getElementById('donutchart');
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
 		google.visualization.events.addListener(chart, 'ready', function () {
 			document.getElementById('png').outerHTML = '<a href="' + chart.getImageURI() + '">Printable version - Random graph </a>';
 			//console.log(chdiv.innerHTML);
-      }) 
+      })
         chart.draw(data, options);
-		
-		
+
+
       }
-	  
+
 	  //"Javascript "class" for a daily productivity graph
 //@author Luke Weber
 //@pre aTitle = title for graph, aArrayOfSites = array of sites that will be added to graph, aArrayOfTime = array of times corresponding to time on sites, aWidth = width of graph
 //@return a Pie chart graph object.
-function DailyGraph(aTitle, aArrayOfSites, aArrayOfTime, aWidth, aHeight, aHtmlId)
+function DailyGraph(aTitle, goodTime, badTime, aWidth, aHeight, aHtmlId)
 {
 	this.lTitle = aTitle;
-	
+
 	//create table of data
 	  var lData = new google.visualization.DataTable();
-	lData.addColumn('string', 'Site');
+	lData.addColumn('string', 'Study/Not Study');
 	lData.addColumn('number', 'Time');
-	
-	if(aArrayOfSites.length == aArrayOfTime.length)
-	{
-		for(i=0; i<aArrayOfSites.length; i++)
-		{
-			lData.addRows([[aArrayOfSites[i], aArrayOfTime[i]]]);
-		}
-	}
-	else
-	{
-		alert("ERROR: DailyGraph must have the same number of sites as time on sites. ");
-	}
-	
+
+
+
+		lData.addRows([
+      ['Study', goodTime]
+    ]);
+
+
+
 	this.width = aWidth;
 	this.height = aHeight;
 	this.options = ""
-	
+
 	this.setOptions = function(aTitle, aWidth, aHeight) {this.options = {'title':aTitle, 'width': aWidth, 'height': aHeight};};
-	
+
 	this.setOptions(this.lTitle,this.width, this.height);
-	
+
 	this.setHeight = function(aHeight){this.height=aHeight;};
 	this.setWidth = function(aWidth){this.width = aWidth}
-	
+
 	this.Chart = new google.visualization.PieChart(document.getElementById(aHtmlId));
-	
+
 	this.draw = function(){
 		this.Chart.draw(lData, this.options);
 	}
@@ -75,37 +71,37 @@ function DailyGraph(aTitle, aArrayOfSites, aArrayOfTime, aWidth, aHeight, aHtmlI
 //@author Luke Weber
 //@pre aTitle = title for graph, a'Day' =  how much time productive on 'Day', aWidth = width of graph
 //@return a Pie chart graph object.
-function WeeklyGraph(aTitle, aMonday, aTuesday, aWednesday, aThursday, aFriday, aWidth, aHeight, aHtmlId)
+function SiteGraph(aSites, aTimePerSite, aTitle, aWidth, aHeight, aHtmlId)
 {
 	this.lTitle = aTitle;
-	
+
 	//create table of data
 	  var lData = new google.visualization.DataTable();
-	lData.addColumn('string', 'Day Of The Week');
+	lData.addColumn('string', 'Site');
 	lData.addColumn('number', 'Time');
-	
-	var lArrayOfDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-	var lArrayOfTime = [aMonday, aTuesday, aWednesday, aThursday, aFriday]
-	
-	for(i=0; i<lArrayOfDays.length; i++)
-	{
-		lData.addRows([[lArrayOfDays[i], lArrayOfTime[i]]]);
+
+
+	if(aSites.length <= aTimePerSite.length)
+  {
+	   for(i=0; i<aSites.length; i++)
+	    {
+		      lData.addRows([[aSites[i], aTimePerSite[i]]]);
+	    }
 	}
-	
-	
+
 	this.width = aWidth;
 	this.height = aHeight;
 	this.options = ""
-	
+
 	this.setOptions = function(aTitle, aWidth, aHeight) {this.options = {'title':aTitle, 'width': aWidth, 'height': aHeight};};
-	
+
 	this.setOptions(this.lTitle,this.width, this.height);
-	
+
 	this.setHeight = function(aHeight){this.height=aHeight;};
 	this.setWidth = function(aWidth){this.width = aWidth}
-	
+
 	this.Chart = new google.visualization.BarChart(document.getElementById(aHtmlId));
-	
+
 	this.draw = function(){this.Chart.draw(lData, this.options)}
 }
 //@author Luke Weber
@@ -113,51 +109,25 @@ function WeeklyGraph(aTitle, aMonday, aTuesday, aWednesday, aThursday, aFriday, 
 //@return none
 function makeGraphs()
 {
-	var lKey = "GoodTimer"
-	var bg = chrome.extension.getBackgroundPage();
-	var goodStorage = new StorageObj(lKey);
-	goodStorage.setValue(bg.get_good_store()+ bg.get_sec())
-	//goodStorage.get doesn't work do to asyncronization of js
-	chrome.storage.local.get(lKey, function(obj)
-      {
-		  var bg = chrome.extension.getBackgroundPage();
-		 
-		  bg.store_good_sec(obj[lKey]);
-	  })
-	  
-	  var badKey = "BadTimer"
-	  var badStorage = new StorageObj("BadTimer");
-	  
-	  
-	
-	badStorage.setValue(bg.get_bad_store()+ bg.get_Badsec())
-	//badStorage.get doesn't work do to asyncronization of js
-	chrome.storage.local.get(badKey, function(obj)
-      {
-		  var bg = chrome.extension.getBackgroundPage();
-		  
-		  bg.store_bad_sec(obj[badKey]);
-	  })
-	  
-	  
-	var goodTime = bg.get_good_store();
-	var badTime = bg.get_bad_store();
-	if(goodTime == 0 && badTime == 0)
-	{
-		
-		document.getElementById('graphchart').innerHTML = "No Data For Today";
-	}
-	else
-	{	
-		var Pie = new DailyGraph("Study Time", ['Study', 'Not Studing'], [bg.get_good_store(), bg.get_bad_store()], 300, 200, 'graphchart');
-		
+
+
+	var goodStorage = new StorageObj('Good');
+  var badStorage = new StorageObj('Bad');
+
+  goodStorage.setValue(1);
+
+
+		var Pie = new DailyGraph("Study Time", goodStorage.getValue(), 0, 300, 200, 'graphchart');
+
         //var chart = new google.visualization.PieChart(document.getElementById('graphchart'));
 		google.visualization.events.addListener(Pie.Chart, 'ready', function () {
 			document.getElementById('png1').outerHTML = '<a href="' + Pie.Chart.getImageURI() + '">Printable version - Daily productivity </a>';
 		})
+
+
 		Pie.draw();
-	}
-	
+
+
 	drawChart();
-	
+
 }

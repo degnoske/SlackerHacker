@@ -13,7 +13,15 @@ function StorageObj(aKey)
     this.getValue = function()
     {
 
-      return(localStorage.getItem(this.mKey))
+      var value = localStorage.getItem(this.mKey)
+      if(!value)
+      {
+        return 0;
+      }
+      else
+       {
+        return Number(value)
+      }
     }
 
 	/**
