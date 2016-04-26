@@ -22,7 +22,7 @@ setInterval(changeDevDisp,1000);
 //@pre The url of site
 function addSiteTimer(aURL)
 {
-	TimerArr.push(new Timer('aURL'));
+	TimerArr.push(new Timer(aURL));
 }
 
 function getGoodTimer()
@@ -39,6 +39,28 @@ function getBadTimer()
 function getAllSiteTimers()
 {
 	return TimerArr;
+}
+
+function pauseAllSiteTimers()
+{
+	for(i = 0; i< TimerArr.length; i++)
+	{
+		TimerArr[i].Pause();
+	}
+}
+
+function getSiteTimer(aName)
+{
+	for (i=0; i<TimerArr.length; i++)
+	{
+		if (TimerArr[i].getName() == aName)
+		{
+			return(TimerArr[i]);
+		}
+
+	}
+	//return false indicating that it doesn't exist
+	return false;
 }
 chrome.webNavigation.onCompleted.addListener
 (
@@ -83,7 +105,7 @@ function checkSite(aURL)
 				{
 
 					var badPage = confirm("Are you sure you want get on social media? (Click Cancel to redirect to Google");
-					confirmationAlert(badPage);
+					confirmationAlert(badPage, domain);
 
 				}
 			  }
@@ -99,13 +121,26 @@ function checkSite(aURL)
 //@pre aBoolean from the confirmationAler
 //@post starts appropriate timers and redirects pages
 //@return none
-function confirmationAlert(aBoolean)
+function confirmationAlert(aBoolean, aURL)
 {
 	//user stays on blocked page
+
+	siteTimer = getSiteTimer(aURL);
 	if (aBoolean)
 	{
 		badTimer.Start();
 		goodTimer.Pause();
+
+		if(!siteTimer)
+		{
+			addSiteTimer(aURL);
+			siteTimer = getSiteTimer(aURL);
+			siteTimer.Start();
+		}
+		else
+		{
+			siteTimer.Start();
+		}
 	}
 
 	//user gets redirected to google

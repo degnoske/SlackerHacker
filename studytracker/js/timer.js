@@ -39,7 +39,7 @@ function Timer(webString)
   	clearInterval(this.get_interval());
   	this.set_isStarted(false);
 		this.set_isPaused(true);
-    console.log("timer paused");
+    console.log(this.TimerName + " timer paused");
   };
 
   this.set_sec = function (second)
