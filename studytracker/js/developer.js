@@ -1,4 +1,7 @@
  var bg = chrome.extension.getBackgroundPage();
+ var startFlag = false;
+ var pauseFlag = false;
+ var stopFlag = false;
 //formats time output to see on dev page
  function formatgoodTime(){
    var hr,min,sec,totalsec;
@@ -37,17 +40,11 @@
      bg.badTimer.Start();
      totalsec= setInterval(bg.badTimer.get_sec(),1000);
    }
-   if (bg.goodTimer.get_isStarted()==true)
+   if (bg.badTimer.get_isStarted()==false)
    {
-     badTimer.Pause()
+     bg.badTimer.Pause()
      bg.badTimer.set_sec(0);
      return("Bad Timer: is paused");
-   }
-   if(bg.badTimer.get_isStarted()==false && bg.badTimer.get_isPaused()==false)
-   {
-     bg.badTimer.Stop()
-     bg.badTimer.set_sec(0);
-     return("Bad Timer: " + 0 + ":" + 0 + ":" + 0);
    }
    hr  = Math.floor(totalsec / 3600);
    min = Math.floor((totalsec - (hr * 3600))/60);
@@ -67,6 +64,7 @@ function changeDevDisp(){
 	if(bg.goodTimer.get_isStarted())
 	{
 		document.getElementById('startPage').innerHTML = "timer started";
+    startFlag = true;
 	}
   else
   {
@@ -76,6 +74,7 @@ function changeDevDisp(){
   if(bg.goodTimer.get_isPaused())
 	{
 		document.getElementById('pausePage').innerHTML = "timer paused";
+    pauseFlag = true;
 	}
   else
   {
@@ -91,6 +90,7 @@ function changeDevDisp(){
       if(!bg.goodTimer.get_isPaused())
       {
       document.getElementById('stopPage').innerHTML = "timer stopped";
+      stopFlag = true;
       }
   }
 
@@ -98,9 +98,42 @@ function changeDevDisp(){
 
   document.getElementById('badTimer').innerHTML = formatbadTime();
 
-
-
+  testSuite();
 }
+
+function testSuite()
+{
+  if(startFlag)
+  {
+    document.getElementById('startGoodTimer').innerHTML ="test passed";
+  }
+  if(pauseFlag)
+  {
+    document.getElementById('pauseGoodTimer').innerHTML ="test passed";
+  }
+  if(stopFlag)
+  {
+    document.getElementById('stopGoodTimer').innerHTML ="test passed";
+  }
+  if(bg.goodTimer.getName() == "goodTimer")
+  {
+    document.getElementById('timerName').innerHTML ="test passed";
+  }
+  if(bg.badTimer.get_isStarted())
+  {
+    document.getElementById('startBadTimer').innerHTML ="test passed";
+  }
+  if(bg.badTimer.get_isPaused())
+  {
+    document.getElementById('pauseBadTimer').innerHTML ="test passed";
+  }
+  if(!bg.badTimer.get_isStarted())
+  {
+    document.getElementById('startBadTimer').innerHTML ="test passed";
+  }
+  
+}
+
 
 //changedisp is called every second to keep updateing the page
 setInterval(changeDevDisp,1000);
