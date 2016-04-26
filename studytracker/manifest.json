@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "content_security_policy": "script-src 'self' 'unsafe-eval'  https://www.gstatic.com https://*.googleapis.com; object-src 'self'",
-	
+  "content_security_policy": "script-src 'self' 'unsafe-eval' https://cdn.firebase.com https://www.gstatic.com https://*.googleapis.com; object-src 'self'",
+
   "name": "Slacker",
   "description": "Be productive!",
   "version": "1.0",
