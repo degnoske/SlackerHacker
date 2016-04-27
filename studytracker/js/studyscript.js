@@ -1,13 +1,10 @@
 
  var bg = chrome.extension.getBackgroundPage();
 
- 
-
 window.onload = function() {
 
     var devMode = document.getElementById('devMode');
     devMode.onclick = developerMode;
-
 
     var start = document.getElementById("start");
     start.onclick = start_time;
@@ -32,7 +29,7 @@ window.onload = function() {
 	document.getElementById("start").value = "Studying";
 	}
 	else{
-	document.getElementById("start").value = "Start Studying";
+	document.getElementById("start").value = "Start";
 	}
 
 	//var viewTime = document.getElementById("time");
