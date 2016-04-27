@@ -7,18 +7,17 @@
    var hr,min,sec,totalsec;
    if(bg.goodTimer.get_isStarted())
    {
-     bg.goodTimer.Start();
+
      totalsec= setInterval(bg.goodTimer.get_sec(),1000);
    }
    if (bg.goodTimer.get_isPaused())
    {
-     bg.goodTimer.Pause()
+
      return("Study Time: is paused");
    }
    if(bg.goodTimer.get_isStarted()==false && bg.goodTimer.get_isPaused()==false)
    {
-     bg.goodTimer.Stop();
-     bg.goodTimer.set_sec(0);
+
      return("Study Time: " + 0 + ":" + 0 + ":" + 0);
    }
    hr  = Math.floor(totalsec / 3600);
@@ -37,13 +36,11 @@
    var hr,min,sec,totalsec;
    if(bg.badTimer.get_isStarted())
    {
-     bg.badTimer.Start();
      totalsec= setInterval(bg.badTimer.get_sec(),1000);
    }
    if (bg.badTimer.get_isStarted()==false)
    {
-     bg.badTimer.Pause()
-     bg.badTimer.set_sec(0);
+     
      return("Bad Timer: is paused");
    }
    hr  = Math.floor(totalsec / 3600);
