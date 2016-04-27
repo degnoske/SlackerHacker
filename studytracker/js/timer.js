@@ -1,6 +1,6 @@
 function Timer(webString)
 {
-	console.log(webString+ " Timer created " + Date.now())
+	//console.log(webString+ " Timer created " + Date.now())
   this.timerName = webString;
   this.sec=0;
   this.myTime;

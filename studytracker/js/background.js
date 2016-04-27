@@ -63,16 +63,16 @@ function getAllSiteStorageNames()
 	}
 	return(lReturn)
 }
-function changeDevDisp(){
-		console.log("changing start val");
-
-	if(goodTimer.get_isStarted())
-	{
-		document.getElementById('startPage').innerHTML = "timer started";
-	}
-}
-
-setInterval(changeDevDisp,1000);
+// function changeDevDisp(){
+// 		console.log("changing start val");
+//
+// 	if(goodTimer.get_isStarted())
+// 	{
+// 		document.getElementById('startPage').innerHTML = "timer started";
+// 	}
+// }
+//
+// setInterval(changeDevDisp,1000);
 
 //@Author Luke Weber
 //@pre The url of site
@@ -170,9 +170,9 @@ function checkSite(aURL)
 							"from a content script:" + sender.tab.url :
 								"from the extension");
 							if (request.action == "confirm")
-								confirmationAlert(true);
+								confirmationAlert(true, domain);
 							else if (request.action=="decline")
-								confirmationAlert(false);
+								confirmationAlert(false, domain);
 
 						});
 
@@ -222,3 +222,13 @@ function confirmationAlert(aBoolean, aURL)
 
 	}
 }
+
+
+//@Author Luke Weber
+//@Pre on close of backgroundPage
+//@Post adds timer values to storage
+window.close = function()
+ {
+	 goodStorage.setValue(goodStorage.getValue()+goodTimer.get_sec());
+	 badStorage.setValue(badStorage.getValue() + goodTimer.get_sec());
+ }

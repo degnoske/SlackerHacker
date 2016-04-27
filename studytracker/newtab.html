@@ -11,8 +11,9 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	
 	<!--Storage of study time-->
-	<script type = "text/javascript" src="js/storage.js"></script>
-	
+	<script type = "text/javascript" src="js/graphs.js"></script>
+
+
 	<!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -24,7 +25,7 @@
 
 	<!-- AngularFire -->
 	<script src="https://cdn.firebase.com/libs/angularfire/1.1.2/angularfire.min.js"></script>
-	
+
     <!-- Custom CSS -->
     <link href="css/custom.css" rel="stylesheet">
 	<title> Be productive! </title>
@@ -64,14 +65,14 @@
 			  <h2 class="brand-heading" id="reminders">Welcome to Slacker Hacker</h2>
 			 <br> <br> <br>
 				<h4 class="into-text" id="quote"> Be productive! </h4>
-						
+
 			</div>
 		  </div>
 		</div>
 		</div>
 	</header>
 
-		
+
 	<!-- Analysis -->
   <section id="analysis" class="container content-section text-center">
 	<div class="row">
@@ -92,10 +93,10 @@
 				  <p> Add more website to your block list to increase productivity! </p>
 					<!-- <form method="post" id="blacklist-form">
 						<div id="category-div" class="form-div">
-							<label>Category: </label> <br> <input type="text" name="category" required> 
+							<label>Category: </label> <br> <input type="text" name="category" required>
 						</div>
 						<div id="url-div" class="form-div">
-							<label>Website URL:</label> <br> <input type="text" name="url" required> 
+							<label>Website URL:</label> <br> <input type="text" name="url" required>
 						</div>
 						<br>
 						<input type="submit" value="Submit">
@@ -119,7 +120,7 @@
 				<button ng-click="addTodo()" ng-hide="myForm.todoNameField.$invalid" class="btn btn-primary" type="button" style="border-radius: 5px">Add to-do</button>
 			</form>
 			<br> <br> <br>
-			
+
 			<!--Status: Pending -->
 			<h4 ng-show="(todos | filter:{status: 'pending'}).length">Pending</h4>
 			<div ng-repeat="todo in todos | filter:{status: 'pending'}" class="row list-item">
@@ -130,7 +131,7 @@
 						<i class="glyphicon glyphicon-remove"></i> Remove</a>
 				</div>
 			</div> <br>
-			
+
 			<!-- In progress to-do -->
 			<h4 ng-show="(todos | filter:{status: 'in progress'}).length">In Progress</h4>
 			<div ng-repeat="todo in todos | filter:{status: 'in progress'}" class="row list-item bg-warning">
@@ -178,7 +179,7 @@
 	<!-- jQuery -->
     <script src="js/jquery-1.12.3.js"></script>
 	<script src="js/jquery-1.12.3.min.js"></script>
-	
+
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 

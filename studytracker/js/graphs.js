@@ -111,20 +111,13 @@ function SiteGraph(aSites, aTimePerSite, aTitle, aWidth, aHeight, aHtmlId)
 //@return none
 function makeGraphs()
 {
-
-  drawTwoValueGraph();
-
-
-
-
-
-
-
-
-	drawChart();
+  drawChart();
 
 }
-
+window.onload = function()
+{
+  drawTwoValueGraph();
+}
 function drawTwoValueGraph()
 {
   var dailyGoodTime = bg.goodStorage.getValue();
@@ -134,15 +127,16 @@ function drawTwoValueGraph()
   dailyBadTime = dailyBadTime + bg.badTimer.get_sec();
 
   //reset timer
-  bg.goodTimer.Stop();
+
   if(bg.goodTimer.get_isStarted())
   {
+    bg.goodTimer.Stop();
     bg.goodTimer.Start();
-  }
-  bg.badTimer.Stop();
 
+  }
   if(bg.badTimer.get_isStarted())
   {
+    bg.badTimer.Stop();
     bg.badTimer.Start()
   }
 
