@@ -131,7 +131,19 @@ function testSuite()
   {
     document.getElementById('startBadTimer').innerHTML ="test passed";
   }
-  
+  if(bg.getpopUpShown())
+  {
+    document.getElementById('popUpTest').innerHTML ="test passed";
+  }
+  if(bg.getBadStarted())
+  {
+    document.getElementById('badTimerTest').innerHTML ="test passed";
+  }
+  if(bg.getredirToGoogle())
+  {
+    document.getElementById('redirToGoogle').innerHTML ="test passed";
+  }
+
 }
 
 
