@@ -71,7 +71,7 @@ function bgTimer() {
 		document.getElementById("reminders").innerHTML = reminder[7];
 	} else if (h >= 0 && h <=5) {
 		$(".intro").addClass("coffee");
-		document.getElementById("reminders").innerHTML = reminder[9];
+		document.getElementById("reminders").innerHTML = reminder[8];
 	} 
     var t = setTimeout(bgTimer, 500);
 }
