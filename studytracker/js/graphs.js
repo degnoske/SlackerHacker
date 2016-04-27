@@ -1,6 +1,6 @@
 var bg = chrome.extension.getBackgroundPage();
-google.charts.load("current", {packages:["corechart"]});
-google.charts.setOnLoadCallback(makeGraphs);
+
+
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
@@ -112,11 +112,13 @@ function SiteGraph(aSites, aTimePerSite, aTitle, aWidth, aHeight, aHtmlId)
 function makeGraphs()
 {
   drawChart();
-
+    drawTwoValueGraph();
 }
 window.onload = function()
 {
-  drawTwoValueGraph();
+  google.charts.load("current", {packages:["corechart"]});
+  google.charts.setOnLoadCallback(makeGraphs);
+
 }
 function drawTwoValueGraph()
 {
@@ -127,7 +129,6 @@ function drawTwoValueGraph()
   dailyBadTime = dailyBadTime + bg.badTimer.get_sec();
 
   //reset timer
-
   if(bg.goodTimer.get_isStarted())
   {
     bg.goodTimer.Stop();
@@ -139,6 +140,9 @@ function drawTwoValueGraph()
     bg.badTimer.Stop();
     bg.badTimer.Start()
   }
+
+  bg.goodStorage.setValue(dailyGoodTime);
+  bg.badStorage.setValue(dailyBadTime);
 
 		var Pie = new DailyGraph("Study Time", dailyGoodTime, dailyBadTime, 300, 200, 'graphchart');
 

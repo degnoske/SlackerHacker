@@ -1,4 +1,5 @@
-
+var consDateStorageKey = "Date";
+var LastDate = new StorageObj(consDateStorageKey);
 var goodStorage = new StorageObj('Good');
 var badStorage = new StorageObj('Bad');
 var SiteStorage = [];
@@ -229,6 +230,23 @@ function confirmationAlert(aBoolean, aURL)
 //@Post adds timer values to storage
 window.close = function()
  {
-	 goodStorage.setValue(goodStorage.getValue()+goodTimer.get_sec());
-	 badStorage.setValue(badStorage.getValue() + goodTimer.get_sec());
+	 extensionClose();
  }
+
+function extensionClose()
+{
+	goodStorage.setValue(goodStorage.getValue()+goodTimer.get_sec());
+	badStorage.setValue(badStorage.getValue() + goodTimer.get_sec());
+
+	if(Date.prototype.getDate() != LastDate.getValue())
+	{
+		resetStorage();
+	}
+}
+function resetStorage()
+{
+		localStorage.clear();
+		var ldate = Date.prototype.getDate();
+
+		LastDate.setValue(ldate);
+}

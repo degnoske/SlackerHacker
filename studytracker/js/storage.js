@@ -39,4 +39,8 @@ function StorageObj(aKey)
     {
       return(self.mKey);
     }
+    self.setKey = function()
+    {
+      return(self.mKey);
+    }
 }
