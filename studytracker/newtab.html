@@ -108,20 +108,56 @@
 
 	<!-- Settings Section -->
     <section id="settings" class="container content-section text-center">
-		<div class="row">
-			<div class="col-lg-8 col-lg-offset-2">
-			
-				<h3> To do list </h3>
-				<form method="post" action="CreatePosts.php" >
-					
-				  <div id="post-div" >
-					 <label>Add a goal: </label> <input type="text" name="post" placeholder="Set your goals for today..." size="35"> 
-				  </div>    
-				  <br>
-				  <input type="submit" value="Save">
-				</form>
-			</div>	
-		</div>	
+		<div ng-controller="TodoCtrl" class="container" ng-app="TodoApp">
+			<h1> My to-do list </h1> <br>
+			<form name="todoForm">
+				<input type="text" name="todoNameField" ng-model="todoName" placeholder="Add new task"
+					   class="form-control"
+					   ng-keyup="($event.keyCode == 13 && todoName.length > 2) ? addtodo() : return"
+					   style="margin-bottom: 10px"/>
+
+				<button ng-click="addTodo()" ng-hide="myForm.todoNameField.$invalid" class="btn btn-primary" type="button">Save</button>
+			</form>
+			<br>
+			<br> <br>
+			<h4 ng-show="(todos | filter:{status: 'pending'}).length">Pending</h4>
+			<div ng-repeat="todo in todos | filter:{status: 'pending'}" class="row list-item">
+				<div class="col-md-6">
+					<span>{{todo.name}}</span>
+				</div>
+				<div class="col-md-6 text-right">
+					<a class="btn btn-warning" ng-click="startTodo($index, todo)">Start</a>
+
+					<a class="btn btn-danger" ng-click="removeTodo($index, todo)">
+						<i class="glyphicon glyphicon-remove"></i> Remove</a>
+				</div>
+			</div>
+
+			<h4 ng-show="(todos | filter:{status: 'in progress'}).length">In Progress</h4>
+			<div ng-repeat="todo in todos | filter:{status: 'in progress'}" class="row list-item bg-warning">
+				<div class="col-md-6">
+					<span>{{todo.name}}</span>
+				</div>
+				<div class="col-md-6 text-right">
+					<a class="btn btn-primary" ng-click="completeTodo($index, todo)">
+						<i class="glyphicon glyphicon-ok"></i> Complete</a>
+						
+					<a class="btn btn-danger" ng-click="removeTodo($index, todo)">
+						<i class="glyphicon glyphicon-remove"></i> Remove</a>
+				</div>
+			</div>
+
+			<h4 ng-show="(todos | filter:{status: 'complete'}).length">Completed</h4>
+			<div ng-repeat="todo in todos | filter:{status: 'complete'}" class="row list-item bg-success">
+				<div class="col-md-6">
+					<span>{{todo.name}}</span>
+				</div>
+				<div class="col-md-6 text-right">
+					<a class="btn btn-danger" ng-click="removeTodo($index, todo)">
+						<i class="glyphicon glyphicon-remove"></i> Remove </a>
+				</div>
+			</div>
+		</div>
 	</section>
 
 	<!-- Contact Section -->
@@ -148,7 +184,8 @@
 
 	<!-- jQuery -->
     <script src="js/jquery-1.12.3.js"></script>
-
+	<script src="js/jquery-1.12.3.min.js"></script>
+	
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
@@ -156,5 +193,6 @@
     <script src="js/custom.js"></script>
 	<script src="js/messages.js"></script>
 	<script src="js/graphs.js"></script>
+	<script src="js/todo.js"></script>
 </body>
 </html>
