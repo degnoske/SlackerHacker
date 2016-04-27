@@ -15,6 +15,14 @@
     "page": "backgroundPage.html",
     "persistent": true
   },
+  "content_scripts": [
+    {
+
+      "matches": ["https://*/*", "http://*/*"],
+      "js": ["js/ContentScript.js"],
+      "run_at": "document_end"
+    }
+  ],
   "chrome_url_overrides": {
       "newtab": "newtab.html"
    },
