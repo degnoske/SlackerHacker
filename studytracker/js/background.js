@@ -3,10 +3,29 @@ var goodStorage = new StorageObj('Good');
 var badStorage = new StorageObj('Bad');
 var SiteStorage = [];
 var goodTimer = new Timer('goodTimer');
-
 var badTimer = new Timer('badTimer');
-
 var TimerArr = [];
+
+//bools and getters for them for testing purposes
+var popUpShown = false;
+function getpopUpShown()
+{
+	return popUpShown;
+}
+
+var badStarted = false
+function getBadStarted()
+{
+		return badStarted;
+}
+
+var redirectToGoogle = false;
+function getredirToGoogle()
+{
+	return redirectToGoogle;
+}
+/////////////////////////
+
 
 function addSiteStorage(aURL)
 {
