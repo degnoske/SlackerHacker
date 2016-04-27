@@ -1,95 +1,96 @@
 function Timer(webString)
 {
+	var self = this;
 	//console.log(webString+ " Timer created " + Date.now())
-  this.timerName = webString;
-  this.sec=0;
-  this.myTime;
-  this.isStarted=false;
-	this.isPaused = false;
+  self.timerName = webString;
+  self.sec=0;
+  self.myTime;
+  self.isStarted=false;
+	self.isPaused = false;
 
-  this.getName = function()
+  self.getName = function()
   {
-    return this.timerName;
+    return self.timerName;
   };
 
-  this.Start = function()
+  self.Start = function()
   {
-    	if (this.get_isStarted() == false)
+    if (self.get_isStarted() == false)
 		{
-
-    		this.set_isStarted(true);
-				this.set_isPaused(false);
-    		this.myTime = setInterval(this.counter(), 1000);
-    		this.set_interval(this.myTime);
+    		self.set_isStarted(true);
+				self.set_isPaused(false);
+    		self.myTime = setInterval(self.counter, 1000);
+    		self.set_interval(self.myTime);
     	}
       console.log("timer started");
   };
 
-  this.Stop = function()
+  self.Stop = function()
   {
-  	clearInterval(this.get_interval());
-  	this.set_isStarted(false);
-		this.set_isPaused(false);
-  	this.set_sec(0);
+  	clearInterval(self.get_interval());
+  	self.set_isStarted(false);
+		self.set_isPaused(false);
+  	self.set_sec(0);
     console.log("timer stopped");
   };
 
-  this.Pause= function()
+  self.Pause= function()
   {
-  	clearInterval(this.get_interval());
-  	this.set_isStarted(false);
-		this.set_isPaused(true);
-    console.log(this.TimerName + " timer paused");
+  	clearInterval(self.get_interval());
+  	self.set_isStarted(false);
+		self.set_isPaused(true);
+    console.log(self.TimerName + " timer paused");
   };
 
-  this.set_sec = function (second)
+  self.set_sec = function(second)
   {
-    this.sec=second;
+    self.sec=second;
   };
 
-  this.counter = function()
+  self.counter = function()
   {
-  	this.sec++;
-  	this.set_sec(this.sec);
+  	self.sec++;
+  	self.set_sec(self.sec);
+		console.log("The seconds on timer " + self.timerName + ": " + self.sec);
   };
 
-  this.set_isStarted = function(bool)
+  self.set_isStarted = function(bool)
   {
-	 console.log(this.getName() + " timer is started.")
-  	this.isStarted=bool;
+	 console.log(self.getName() + " timer is started.")
+  	self.isStarted=bool;
   };
 
-  this.get_isStarted = function()
+  self.get_isStarted = function()
   {
-  	return this.isStarted;
+  	return self.isStarted;
   };
 
-	this.set_isPaused = function(bool)
+	self.set_isPaused = function(bool)
   {
-  	this.isPaused = bool;
+  	self.isPaused = bool;
   };
 
-  this.get_isPaused = function()
+  self.get_isPaused = function()
   {
-  	return this.isPaused;
-  };
-
-
-  this.set_interval = function(interval)
-  {
-  	this.myTime=interval;
+  	return self.isPaused;
   };
 
 
-
-  this.get_interval = function ()
+  self.set_interval = function(interval)
   {
-  	return this.myTime;
+  	self.myTime=interval;
   };
 
-  this.get_sec = function()
+
+
+  self.get_interval = function ()
   {
-  	return this.sec;
+  	return self.myTime;
+  };
+
+  self.get_sec = function()
+  {
+  	return self.sec;
   };
 
 }
