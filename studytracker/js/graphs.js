@@ -1,3 +1,4 @@
+var bg = chrome.extension.getBackgroundPage();
 google.charts.load("current", {packages:["corechart"]});
 google.charts.setOnLoadCallback(makeGraphs);
 
@@ -46,6 +47,7 @@ function DailyGraph(aTitle, goodTime, badTime, aWidth, aHeight, aHtmlId)
 
 		lData.addRows([
       ['Study', goodTime]
+      ['Not Study', badTime]
     ]);
 
 
@@ -111,13 +113,17 @@ function makeGraphs()
 {
 
 
-	var goodStorage = new StorageObj('Good');
-  var badStorage = new StorageObj('Bad');
 
-  goodStorage.setValue(1);
+  var dailyGoodTime = bg.goodStorage.getValue();
+  var dailyBadTime = bg.badStorage.getValue();
+
+  dailyGoodTime = dailyGoodTime + bg.goodTimer.get_sec();
+  dailyBadTime = dailyBadTime + bg.badTimer.get_sec();
+  
 
 
-		var Pie = new DailyGraph("Study Time", goodStorage.getValue(), 0, 300, 200, 'graphchart');
+
+		var Pie = new DailyGraph("Study Time", dailyGoodTime, dailyBadTime, 300, 200, 'graphchart');
 
         //var chart = new google.visualization.PieChart(document.getElementById('graphchart'));
 		google.visualization.events.addListener(Pie.Chart, 'ready', function () {

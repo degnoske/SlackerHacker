@@ -34,4 +34,8 @@ function StorageObj(aKey)
      localStorage.setItem(this.mKey, aVal)
 
     }
+    this.getKey = function()
+    {
+      return(this.mKey);
+    }
 }

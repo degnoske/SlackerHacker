@@ -1,12 +1,49 @@
 
-
-
+var goodStorage = new StorageObj('Good');
+var badStorage = new StorageObj('Bad');
+var SiteStorage = [];
 var goodTimer = new Timer('goodTimer');
 
 var badTimer = new Timer('badTimer');
 
 var TimerArr = [];
 
+function addSiteStorage(aURL)
+{
+	SiteStorage.push(new StorageObj(aURL));
+}
+
+function getSiteStorage(aURL)
+{
+	for(i=0; i<SiteStorage.length; i++)
+	{
+		if(SiteStorage[i].getName() == aURL)
+		{
+			return(SiteStorage[i]);
+		}
+	}
+	return(false);
+}
+
+function getAllSiteTimes()
+{
+	lReturn = [];
+	for(i=0; i<SiteStorage.length; i++)
+	{
+			lReturn.push(SiteStorage[i].getValue());
+	}
+	return(lReturn);
+}
+
+function getAllSiteStorageNames()
+{
+	lReturn = [];
+	for(i=0; i<SiteStorage.length; i++)
+	{
+			lReturn.push(SiteStorage[i].geName());
+	}
+	return(lReturn)
+}
 function changeDevDisp(){
 		console.log("changing start val");
 
