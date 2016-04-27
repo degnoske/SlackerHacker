@@ -7,13 +7,14 @@
  */
 function StorageObj(aKey)
 {
-    this.mKey = aKey;
+    var self = this;
+    self.mKey = aKey;
 	//getValue doesn't work at the moment
 
-    this.getValue = function()
+    self.getValue = function()
     {
 
-      var value = localStorage.getItem(this.mKey)
+      var value = localStorage.getItem(self.mKey)
       if(!value)
       {
         return 0;
@@ -28,14 +29,14 @@ function StorageObj(aKey)
      * @author Luke Weber
      * @pre the value to send to storage.
      */
-    this.setValue = function(aVal)
+    self.setValue = function(aVal)
     {
 
-     localStorage.setItem(this.mKey, aVal)
+     localStorage.setItem(self.mKey, aVal)
 
     }
-    this.getKey = function()
+    self.getKey = function()
     {
-      return(this.mKey);
+      return(self.mKey);
     }
 }
