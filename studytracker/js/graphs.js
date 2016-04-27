@@ -46,7 +46,7 @@ function DailyGraph(aTitle, goodTime, badTime, aWidth, aHeight, aHtmlId)
 
 
 		lData.addRows([
-      ['Study', goodTime]
+      ['Study', goodTime],
       ['Not Study', badTime]
     ]);
 
@@ -112,28 +112,51 @@ function SiteGraph(aSites, aTimePerSite, aTitle, aWidth, aHeight, aHtmlId)
 function makeGraphs()
 {
 
+  drawTwoValueGraph();
 
 
+
+
+
+
+
+
+	drawChart();
+
+}
+
+function drawTwoValueGraph()
+{
   var dailyGoodTime = bg.goodStorage.getValue();
   var dailyBadTime = bg.badStorage.getValue();
 
   dailyGoodTime = dailyGoodTime + bg.goodTimer.get_sec();
   dailyBadTime = dailyBadTime + bg.badTimer.get_sec();
-  
 
+  //reset timer
+  bg.goodTimer.Stop();
+  if(bg.goodTimer.get_isStarted())
+  {
+    bg.goodTimer.Start();
+  }
+  bg.badTimer.Stop();
 
+  if(bg.badTimer.get_isStarted())
+  {
+    bg.badTimer.Start()
+  }
 
 		var Pie = new DailyGraph("Study Time", dailyGoodTime, dailyBadTime, 300, 200, 'graphchart');
 
-        //var chart = new google.visualization.PieChart(document.getElementById('graphchart'));
-		google.visualization.events.addListener(Pie.Chart, 'ready', function () {
-			document.getElementById('png1').outerHTML = '<a href="' + Pie.Chart.getImageURI() + '">Printable version - Daily productivity </a>';
-		})
+    Pie.draw();
 
+    getGraphPNG(Pie);
+}
 
-		Pie.draw();
-
-
-	drawChart();
-
+function getGraphPNG(graph)
+{
+  //var chart = new google.visualization.PieChart(document.getElementById('graphchart'));
+google.visualization.events.addListener(graph.Chart, 'ready', function () {
+document.getElementById('png1').outerHTML = '<a href="' + Pie.Chart.getImageURI() + '">Printable version - Daily productivity </a>';
+})
 }
