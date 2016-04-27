@@ -141,8 +141,21 @@ function checkSite(aURL)
 				if(document.getElementById("foo").innerHTML == 1 && goodTimer.get_isStarted())
 				{
 
-					var badPage = confirm("Are you sure you want get on social media? (Click Cancel to redirect to Google");
-					confirmationAlert(badPage, domain);
+					chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+						chrome.tabs.sendMessage(tabs[0].id, {action: "open_dialog_box"}, function(response) {});
+					});
+
+					chrome.runtime.onMessage.addListener(
+						function(request, sender, sendResponse) {
+							console.log(sender.tab ?
+							"from a content script:" + sender.tab.url :
+								"from the extension");
+							if (request.action == "confirm")
+								confirmationAlert(true);
+							else if (request.action=="decline")
+								confirmationAlert(false);
+
+						});
 
 				}
 			  }
