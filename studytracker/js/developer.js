@@ -2,7 +2,10 @@
  var startFlag = false;
  var pauseFlag = false;
  var stopFlag = false;
-//formats time output to see on dev page
+
+/**@author Luke Dercher
+* @function formats time output to see on dev page
+*/
  function formatgoodTime(){
    var hr,min,sec,totalsec;
    if(bg.goodTimer.get_isStarted())
@@ -31,7 +34,9 @@
    return("Study Time: " + hr + ":" + min + ":" + sec);
 
  }
-//displays bad time clock
+/** @author Luke Dercher
+*  @function displays bad time clock
+*/
  function formatbadTime(){
    var hr,min,sec,totalsec;
    if(bg.badTimer.get_isStarted())
@@ -54,7 +59,9 @@
    return("Bad Timer: " + hr + ":" + min + ":" + sec);
 
  }
-//changes html page to show when the time is started stopped, paused and current time on clock
+ /** @author Luke Dercher
+ *  @function changes html page to show when the time is started stopped, paused and current time on clock
+ */
 function changeDevDisp(){
 		console.log("changing start val");
 
@@ -98,6 +105,9 @@ function changeDevDisp(){
   testSuite();
 }
 
+/** @author Luke Dercher
+*  @function displays bad time clock
+*/
 function testSuite()
 {
   if(startFlag)
@@ -143,6 +153,9 @@ function testSuite()
 
 }
 
+/**
+*
+*/
 window.onload = function()
 {
   var clrStr = document.getElementById('clearStorage');

@@ -7,25 +7,32 @@ var goodTimer = new Timer('goodTimer');
 var badTimer = new Timer('badTimer');
 var TimerArr = [];
 
-//bools and getters for them for testing purposes
+/**@author Luke Dercher
+* @function bool and getter used to verify the confimation popup shows up
+*/
 var popUpShown = false;
 function getpopUpShown()
 {
 	return popUpShown;
 }
 
+/**@author Luke Dercher
+* @function bool and getter used to verify the badTimer is started upon visited a blacklisted website
+*/
 var badStarted = false
 function getBadStarted()
 {
 		return badStarted;
 }
 
+/**@author Luke Dercher
+* @function bool and getter used to verify the user is redirected to google when they click no on the pop up
+*/
 var redirectToGoogle = false;
 function getredirToGoogle()
 {
 	return redirectToGoogle;
 }
-/////////////////////////
 
 
 function addSiteStorage(aURL)
@@ -201,10 +208,11 @@ function checkSite(aURL)
   }
 }
 
-//@Author Luke Dercher, Dylan Egnoske
-//@pre aBoolean from the confirmationAler
-//@post starts appropriate timers and redirects pages
-//@return none
+/** @author Luke Dercher, Dylan Egnoske
+*  @pre aBoolean from the confirmationAler
+*  @post starts appropriate timers and redirects pages
+*  @return none
+*/
 function confirmationAlert(aBoolean, aURL)
 {
 	//user stays on blocked page
@@ -243,9 +251,10 @@ function pauseAllTimers()
 	pauseAllSiteTimers();
 }
 
-//@Author Luke Weber
-//@Pre on close of backgroundPage
-//@Post adds timer values to storage
+/** @author Luke Weber
+* @Pre on close of backgroundPage
+* @Post adds timer values to storage
+*/
 window.close = function()
  {
 	 extensionClose();
