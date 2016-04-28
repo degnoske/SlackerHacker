@@ -161,7 +161,7 @@ function checkSite(aURL)
 				$('#foo').html(data);
 				if(document.getElementById("foo").innerHTML == 1 && goodTimer.get_isStarted())
 				{
-
+						popUpShown = true;
 					chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
 						chrome.tabs.sendMessage(tabs[0].id, {action: "open_dialog_box"}, function(response) {});
 					});
@@ -172,10 +172,16 @@ function checkSite(aURL)
 							"from a content script:" + sender.tab.url :
 								"from the extension");
 							if (request.action == "confirm")
+							{
+							badStarted = true;
 								confirmationAlert(true, domain);
+							}
 							else if (request.action=="decline")
-								confirmationAlert(false, domain);
+							{
+								redirectToGoogle = true;
 
+								confirmationAlert(false, domain);
+							}
 						});
 
 				}
@@ -224,7 +230,6 @@ function confirmationAlert(aBoolean, aURL)
 	//user gets redirected to google
 	else
 	{
-
 		goodTimer.Start();
 		chrome.tabs.update({url: "https://www.google.com"});
 		badTimer.Pause();
