@@ -44,7 +44,7 @@ function getSiteStorage(aURL)
 	}
 	return(false);
 }
-\
+
 
 function getAllSiteTimes()
 {
@@ -251,10 +251,52 @@ function extensionClose()
 	goodStorage.setValue(goodStorage.getValue()+goodTimer.get_sec());
 	badStorage.setValue(badStorage.getValue() + goodTimer.get_sec());
 
+	storeAllSiteTime();
 	if(Date.prototype.getDate() != LastDate.getValue())
 	{
 		resetStorage();
 	}
+}
+
+function getAllSiteTimes()
+{
+	var lReturnArr = [];
+	for(i=0; i<SiteStorage.length; i++)
+	{
+		lReturnArr.push(SiteStorage[i].getValue())
+	}
+	return lReturnArr;
+}
+
+function getAllSiteStorageNames()
+{
+	var lReturnArr = [];
+	for(i=0; i<SiteStorage.length; i++)
+	{
+		lReturnArr.push(SiteStorage[i].getKey())
+	}
+	return lReturnArr;
+}
+function storeAllSiteTime()
+{
+	for(i=0; i<TimerArr.length; i++)
+	{
+			storeSiteTime(TimerArr[i]);
+	}
+}
+function storeSiteTime(aTimer)
+{
+	for(i=0; i<SiteStorage.length; i++)
+	{
+		if(SiteStorage[i].getKey() == aTimer.getName())
+		{
+			SiteStorage[i].setValue(SiteStorage[i].getValue() + aTimer.get_sec())
+			return true
+		}
+	}
+	var lDummyStorage = new StorageObj(aTimer.getName());
+	lDummyStorage.setValue(aTimer.get_sec());
+	SiteStorage.push(lDummyStorage);
 }
 function resetStorage()
 {

@@ -113,12 +113,22 @@ function makeGraphs()
 {
   drawChart();
     drawTwoValueGraph();
+    drawSiteGraph();
 }
 window.onload = function()
 {
   google.charts.load("current", {packages:["corechart"]});
   google.charts.setOnLoadCallback(makeGraphs);
 
+}
+
+function drawSiteGraph()
+{
+  bg.storeAllSiteTime();
+  var lTimes = bg.getAllSiteTimes();
+  var lNames = bg.getAllSiteStorageNames();
+  var lSiteGraph = new SiteGraph(lNames, lTimes, 'Site Usage', 300, 200, 'SiteGraph');
+  lSiteGraph.draw();
 }
 function drawTwoValueGraph()
 {
