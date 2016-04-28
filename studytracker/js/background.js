@@ -44,6 +44,7 @@ function getSiteStorage(aURL)
 	}
 	return(false);
 }
+\
 
 function getAllSiteTimes()
 {
@@ -178,6 +179,13 @@ function checkSite(aURL)
 						});
 
 				}
+				else
+				{
+
+					badTimer.pause();
+					pauseAllSiteTimers();
+
+				}
 			  }
 		  )
 		}
@@ -223,7 +231,12 @@ function confirmationAlert(aBoolean, aURL)
 
 	}
 }
-
+function pauseAllTimers()
+{
+	goodTimer.Pause();
+	badTimer.Pause();
+	pauseAllSiteTimers();
+}
 
 //@Author Luke Weber
 //@Pre on close of backgroundPage
