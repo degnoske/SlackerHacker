@@ -182,7 +182,7 @@ function checkSite(aURL)
 				else
 				{
 
-					badTimer.pause();
+					badTimer.Pause();
 					pauseAllSiteTimers();
 
 				}
@@ -301,7 +301,8 @@ function storeSiteTime(aTimer)
 function resetStorage()
 {
 		localStorage.clear();
-		var ldate = Date.prototype.getDate();
+		var ldate = new Date();
+		var lday = ldate.getDate();
 
-		LastDate.setValue(ldate);
+		LastDate.setValue(lday);
 }

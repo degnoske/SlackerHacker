@@ -127,8 +127,18 @@ function drawSiteGraph()
   bg.storeAllSiteTime();
   var lTimes = bg.getAllSiteTimes();
   var lNames = bg.getAllSiteStorageNames();
+  bg.pauseAllSiteTimers();
+  if(lNames.length<1)
+  {
+    document.getElementById('SiteGraph').innerHTML = "NO DATA! PLEASE START TIMER"
+  }
+  else
+  {
+
+
   var lSiteGraph = new SiteGraph(lNames, lTimes, 'Site Usage', 300, 200, 'SiteGraph');
   lSiteGraph.draw();
+  }
 }
 function drawTwoValueGraph()
 {
@@ -151,14 +161,23 @@ function drawTwoValueGraph()
     bg.badTimer.Start()
   }
 
+
   bg.goodStorage.setValue(dailyGoodTime);
   bg.badStorage.setValue(dailyBadTime);
+
+  if(!dailyGoodTime && !dailyBadTime)
+  {
+    document.getElementById('graphchart').innerHTML = "NO DATA! PLEASE START TIMER"
+  }
+  else {
+
 
 		var Pie = new DailyGraph("Study Time", dailyGoodTime, dailyBadTime, 300, 200, 'graphchart');
 
     Pie.draw();
 
     getGraphPNG(Pie);
+  }
 }
 
 function getGraphPNG(graph)

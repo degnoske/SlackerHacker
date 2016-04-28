@@ -40,7 +40,7 @@
    }
    if (bg.badTimer.get_isStarted()==false)
    {
-     
+
      return("Bad Timer: is paused");
    }
    hr  = Math.floor(totalsec / 3600);
@@ -143,6 +143,10 @@ function testSuite()
 
 }
 
-
+window.onload = function()
+{
+  var clrStr = document.getElementById('clearStorage');
+  clrStr.onclick = bg.resetStorage();
+}
 //changedisp is called every second to keep updateing the page
 setInterval(changeDevDisp,1000);
