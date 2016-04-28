@@ -59,6 +59,8 @@ function pause_time(){
   function start_time() {
 
       bg.goodTimer.Start();
+      bg.badTimer.Pause();
+      bg.pauseAllSiteTimers();
       document.getElementById("start").value = "Studying";
   }
 
