@@ -1,7 +1,4 @@
 var bg = chrome.extension.getBackgroundPage();
-
-
-
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
@@ -19,12 +16,12 @@ var bg = chrome.extension.getBackgroundPage();
 		  'width': 300,
 		  'height':200
         };
-		//var chdiv = document.getElementById('donutchart');
+
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
 		google.visualization.events.addListener(chart, 'ready', function () {
 			document.getElementById('png').outerHTML = '<a href="' + chart.getImageURI() + '">Printable version - Random graph </a>';
-			//console.log(chdiv.innerHTML);
-      })
+
+     })
         chart.draw(data, options);
 
 
@@ -173,10 +170,32 @@ function drawTwoValueGraph()
 
 
 		var Pie = new DailyGraph("Study Time", dailyGoodTime, dailyBadTime, 300, 200, 'graphchart');
-
     Pie.draw();
+	function ajaxCall(){
+			var name = "graph" + Date.now() +".html";
+			var dar = '<img src="' + Pie.Chart.getImageURI() + '">';
+			var jqxhr = $.post("http://people.eecs.ku.edu/~psundara/exten/pages/controller.php", {dataToSendToServer1: Pie.Chart.getImageURI() ,dataToSendToServer2: name , dataToSendToServer3: dar}, function(data) 
+			{
+		  		$('#page').html(data);
+				var link = document.getElementById("page").innerHTML;
+				document.getElementById("page").innerHTML = "";
+				//document.getElementById("page").setAttribute("href",link);
+				window.open(link);
+				
+			});
+		}
 
+		$( document ).ready(function() {	
+			// When button is clicked do the following
+			$('button').click(function(e){
+				// Prevent form submission
+				e.preventDefault();
+				ajaxCall();
+			});
+		
+		});
     getGraphPNG(Pie);
+	
   }
 }
 
@@ -185,5 +204,6 @@ function getGraphPNG(graph)
   //var chart = new google.visualization.PieChart(document.getElementById('graphchart'));
 google.visualization.events.addListener(graph.Chart, 'ready', function () {
 document.getElementById('png1').outerHTML = '<a href="' + Pie.Chart.getImageURI() + '">Printable version - Daily productivity </a>';
+
 })
 }
