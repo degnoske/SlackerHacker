@@ -1,9 +1,12 @@
 var bg = chrome.extension.getBackgroundPage();
 
-	  //"Javascript "class" for a daily productivity graph
-//@author Luke Weber
-//@pre aTitle = title for graph, aArrayOfSites = array of sites that will be added to graph, aArrayOfTime = array of times corresponding to time on sites, aWidth = width of graph
-//@return a Pie chart graph object.
+/**
+**@Author Luke Weber
+**@pre Title for the graph, the time spent Studying, the time spent not Studying, the width of the graph, the height of the graph
+**@Pre the id of the Html graph
+**@post creates a piechart graph object
+**@Return A DailyGraph object.
+*/
 function DailyGraph(aTitle, goodTime, badTime, aWidth, aHeight, aHtmlId)
 {
 	this.lTitle = aTitle;
@@ -40,9 +43,13 @@ function DailyGraph(aTitle, goodTime, badTime, aWidth, aHeight, aHtmlId)
 	}
 }
 
-//@author Luke Weber
-//@pre aTitle = title for graph, a'Day' =  how much time productive on 'Day', aWidth = width of graph
-//@return a Pie chart graph object.
+/**
+**@Author Luke Weber
+**@pre Title for the graph, an array of time spent on a site, an array of sites, the width of the graph, the height of the graph
+**@Pre the id of the Html graph
+**@post creates a bar graph object
+**@Return A SiteGraph object.
+*/
 function SiteGraph(aSites, aTimePerSite, aTitle, aWidth, aHeight, aHtmlId)
 {
 	this.lTitle = aTitle;
@@ -76,15 +83,19 @@ function SiteGraph(aSites, aTimePerSite, aTitle, aWidth, aHeight, aHtmlId)
 
 	this.draw = function(){this.Chart.draw(lData, this.options)}
 }
-//@author Luke Weber
-//@pre none
-//@return none
+
+/**
+**@Author Luke Weber
+**@pre None
+**@post Draws the two graphs
+**@Return None
+*/
 function makeGraphs()
 {
-  drawChart();
     drawTwoValueGraph();
     drawSiteGraph();
 }
+
 window.onload = function()
 {
   google.charts.load("current", {packages:["corechart"]});
@@ -92,6 +103,12 @@ window.onload = function()
 
 }
 
+/**
+**@Author Luke Weber
+**@pre None
+**@post Grabs all site times and resets timers and draws site graph
+**@Return None.
+*/
 function drawSiteGraph()
 {
   bg.storeAllSiteTime();
@@ -110,6 +127,13 @@ function drawSiteGraph()
   lSiteGraph.draw();
   }
 }
+
+/**
+**@Author Luke Weber
+**@pre None
+**@post Grabs all study/not study times and resets timers and draws pie graph
+**@Return None.
+*/
 function drawTwoValueGraph()
 {
   var dailyGoodTime = bg.goodStorage.getValue();
