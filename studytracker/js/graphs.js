@@ -1,31 +1,4 @@
 var bg = chrome.extension.getBackgroundPage();
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     9],
-          ['Facebook',  2],
-          ['YouTube',  2],
-          ['Searching', 2],
-          ['ku.edu',    7],
-		  ['Other', 4]
-        ]);
-
-        var options = {
-          title: 'My Daily Productivity',
-          pieHole: 0.1,
-		  'width': 300,
-		  'height':200
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-		google.visualization.events.addListener(chart, 'ready', function () {
-			document.getElementById('png').outerHTML = '<a href="' + chart.getImageURI() + '">Printable version - Random graph </a>';
-
-     })
-        chart.draw(data, options);
-
-
-      }
 
 	  //"Javascript "class" for a daily productivity graph
 //@author Luke Weber
@@ -174,28 +147,28 @@ function drawTwoValueGraph()
 	function ajaxCall(){
 			var name = "graph" + Date.now() +".html";
 			var dar = '<img src="' + Pie.Chart.getImageURI() + '">';
-			var jqxhr = $.post("http://people.eecs.ku.edu/~psundara/exten/pages/controller.php", {dataToSendToServer1: Pie.Chart.getImageURI() ,dataToSendToServer2: name , dataToSendToServer3: dar}, function(data) 
+			var jqxhr = $.post("http://people.eecs.ku.edu/~psundara/exten/pages/controller.php", {dataToSendToServer1: Pie.Chart.getImageURI() ,dataToSendToServer2: name , dataToSendToServer3: dar}, function(data)
 			{
 		  		$('#page').html(data);
 				var link = document.getElementById("page").innerHTML;
 				document.getElementById("page").innerHTML = "";
 				//document.getElementById("page").setAttribute("href",link);
 				window.open(link);
-				
+
 			});
 		}
 
-		$( document ).ready(function() {	
+		$( document ).ready(function() {
 			// When button is clicked do the following
 			$('button').click(function(e){
 				// Prevent form submission
 				e.preventDefault();
 				ajaxCall();
 			});
-		
+
 		});
     getGraphPNG(Pie);
-	
+
   }
 }
 
