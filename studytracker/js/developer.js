@@ -150,6 +150,10 @@ function testSuite()
   {
     document.getElementById('redirToGoogle').innerHTML ="test passed";
   }
+  if(bg.graphsMade)
+  {
+    document.getElementById('graphsMade').innerHTML ="test passed";
+  }
 
 }
 
