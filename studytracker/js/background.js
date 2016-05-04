@@ -1,3 +1,4 @@
+var graphsMade = false;
 var consDateStorageKey = "Date";
 var LastDate = new StorageObj(consDateStorageKey);
 var goodStorage = new StorageObj('Good');
