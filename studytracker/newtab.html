@@ -124,7 +124,7 @@
 					   class="form-control"
 					   ng-keyup="($event.keyCode == 13 && todoName.length > 2) ? addtodo() : return"
 					   style="margin-bottom: 10px"/>
-				<button ng-click="addTodo()" ng-hide="myForm.todoNameField.$invalid" class="btn btn-primary" type="button" style="border-radius: 5px">Add to-do</button>
+				<button ng-click="addTodo()" ng-hide="myForm.todoNameField.$invalid" class="btn btn-primary" type="button" style="border-radius: 3px">Add to-do</button>
 			</form>
 			<br> <br> <br>
 
@@ -133,7 +133,7 @@
 			<div ng-repeat="todo in todos | filter:{status: 'pending'}" class="row list-item">
 				<div class="col-md-6"> <span>{{todo.name}}</span> </div>
 				<div class="col-md-6 text-right">
-					<a class="btn btn-warning" ng-click="startTodo($index, todo)" style="border-radius: 5px">Start working</a>
+					<a class="btn btn-warning" ng-click="startTodo($index, todo)" style="border-radius: 6px">Start working</a>
 					<a class="btn btn-danger" ng-click="removeTodo($index, todo)">
 						<i class="glyphicon glyphicon-remove"></i> Remove</a>
 				</div>
@@ -144,7 +144,7 @@
 			<div ng-repeat="todo in todos | filter:{status: 'in progress'}" class="row list-item bg-warning">
 				<div class="col-md-6"> <span>{{todo.name}}</span> </div>
 				<div class="col-md-6 text-right">
-					<a class="btn btn-primary" ng-click="completeTodo($index, todo)" style="border-radius: 5px">
+					<a class="btn btn-success" ng-click="completeTodo($index, todo)" style="border-radius: 6px">
 						<i class="glyphicon glyphicon-ok"></i> Complete!</a>
 					<a class="btn btn-danger" ng-click="removeTodo($index, todo)"> <i class="glyphicon glyphicon-remove"></i> Remove</a>
 				</div>
@@ -155,7 +155,7 @@
 			<div ng-repeat="todo in todos | filter:{status: 'complete'}" class="row list-item bg-success">
 				<div class="col-md-6"> <span>{{todo.name}}</span> </div>
 				<div class="col-md-6 text-right">
-					<a class="btn btn-danger" ng-click="removeTodo($index, todo)"> <i class="glyphicon glyphicon-remove"></i> Remove </a>
+					<a class="btn btn-success" ng-click="removeTodo($index, todo)"> <i class="glyphicon glyphicon-remove"></i> Remove </a>
 				</div>
 			</div>
 		</div>
