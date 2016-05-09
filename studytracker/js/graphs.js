@@ -101,6 +101,7 @@ window.onload = function()
   google.charts.load("current", {packages:["corechart"]});
   google.charts.setOnLoadCallback(makeGraphs);
 
+
 }
 
 /**
@@ -168,26 +169,16 @@ function drawTwoValueGraph()
 
 		var Pie = new DailyGraph("Study Time", dailyGoodTime, dailyBadTime, 300, 200, 'graphchart');
     Pie.draw();
-	function ajaxCall(){
-			var name = "graph" + Date.now() +".html";
-			var dar = '<img src="' + Pie.Chart.getImageURI() + '">';
-			var jqxhr = $.post("http://people.eecs.ku.edu/~psundara/exten/pages/controller.php", {dataToSendToServer1: Pie.Chart.getImageURI() ,dataToSendToServer2: name , dataToSendToServer3: dar}, function(data)
-			{
-		  		$('#page').html(data);
-				var link = document.getElementById("page").innerHTML;
-				document.getElementById("page").innerHTML = "";
-				//document.getElementById("page").setAttribute("href",link);
-				window.open(link);
 
-			});
-		}
+		var share = document.getElementById('shareButton');
+		share.onclick = function(){ajaxCall(Pie);};;
 
 		$( document ).ready(function() {
 			// When button is clicked do the following
 			$('button').click(function(e){
 				// Prevent form submission
-				e.preventDefault();
-				ajaxCall();
+	//			e.preventDefault();
+				//ajaxCall();
 			});
 
 		});
@@ -196,6 +187,20 @@ function drawTwoValueGraph()
   }
 }
 
+function ajaxCall(graph){
+	console.log("AJAX CALL")
+		var name = "graph" + Date.now() +".html";
+		var dar = '<img src="' + graph.Chart.getImageURI() + '">';
+		var jqxhr = $.post("http://people.eecs.ku.edu/~psundara/exten/pages/controller.php", {dataToSendToServer1: graph.Chart.getImageURI() ,dataToSendToServer2: name , dataToSendToServer3: dar}, function(data)
+		{
+				$('#page').html(data);
+			var link = document.getElementById("page").innerHTML;
+			document.getElementById("page").innerHTML = "";
+			//document.getElementById("page").setAttribute("href",link);
+			window.open(link);
+
+		});
+	}
 function getGraphPNG(graph)
 {
   //var chart = new google.visualization.PieChart(document.getElementById('graphchart'));
