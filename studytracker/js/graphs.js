@@ -165,7 +165,10 @@ function drawTwoValueGraph()
     document.getElementById('graphchart').innerHTML = "NO DATA! PLEASE START TIMER"
   }
   else {
-
+/**
+**@Author Sri Gayatri
+**@desc: facebook share features
+*/
 
 		var Pie = new DailyGraph("Study Time", dailyGoodTime, dailyBadTime, 300, 200, 'graphchart');
     Pie.draw();
