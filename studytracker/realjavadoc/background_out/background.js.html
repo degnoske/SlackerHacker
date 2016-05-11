@@ -26,282 +26,329 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>chrome.webNavigation.onCompleted.addListener(function(e)
-{
-	var activeTab = window.location.hostname;
-	var url =e.url;
-	var n1 = url.indexOf("www.");
-	var n2 = url.indexOf(".com") + 4;
-	var domain = url.slice(n1,n2);
-	if(domain!="")
-	{
+            <pre class="prettyprint source linenums"><code>var graphsMade = false;
+var consDateStorageKey = "Date";
+var LastDate = new StorageObj(consDateStorageKey);
+var goodStorage = new StorageObj('Good');
+var badStorage = new StorageObj('Bad');
+var SiteStorage = [];
+var goodTimer = new Timer('goodTimer');
+var badTimer = new Timer('badTimer');
+var TimerArr = [];
 
-		$( document ).ready(function()
+/**@author Luke Dercher
+*  @function bool and getter used to verify the confimation popup shows up
+*/
+var popUpShown = false;
+function getpopUpShown()
+{
+	return popUpShown;
+}
+
+/**@author Luke Dercher
+* @function bool and getter used to verify the badTimer is started upon visited a blacklisted website
+*/
+var badStarted = false
+function getBadStarted()
+{
+		return badStarted;
+}
+
+/**@author Luke Dercher
+* @function bool and getter used to verify the user is redirected to google when they click no on the pop up
+*/
+var redirectToGoogle = false;
+function getredirToGoogle()
+{
+	return redirectToGoogle;
+}
+
+
+function addSiteStorage(aURL)
+{
+	SiteStorage.push(new StorageObj(aURL));
+}
+
+function getSiteStorage(aURL)
+{
+	for(i=0; i&lt;SiteStorage.length; i++)
+	{
+		if(SiteStorage[i].getName() == aURL)
 		{
-			var jqxhr = $.post("http://people.eecs.ku.edu/~psundara/exten/checker.php", {dataToSendToServer1: domain, dataToSendToServer2: "server"}, function(data)
-			{
+			return(SiteStorage[i]);
+		}
+	}
+	return(false);
+}
+
+
+function getAllSiteTimes()
+{
+	lReturn = [];
+	for(i=0; i&lt;SiteStorage.length; i++)
+	{
+			lReturn.push(SiteStorage[i].getValue());
+	}
+	return(lReturn);
+}
+
+function getAllSiteStorageNames()
+{
+	lReturn = [];
+	for(i=0; i&lt;SiteStorage.length; i++)
+	{
+			lReturn.push(SiteStorage[i].geName());
+	}
+	return(lReturn)
+}
+// function changeDevDisp(){
+// 		console.log("changing start val");
+//
+// 	if(goodTimer.get_isStarted())
+// 	{
+// 		document.getElementById('startPage').innerHTML = "timer started";
+// 	}
+// }
+//
+// setInterval(changeDevDisp,1000);
+
+//@Author Luke Weber
+//@pre The url of site
+function addSiteTimer(aURL)
+{
+	TimerArr.push(new Timer(aURL));
+}
+
+function getGoodTimer()
+{
+	console.log(goodTimer.getName());
+	return goodTimer;
+}
+
+function getBadTimer()
+{
+	return badTimer;
+}
+
+function getAllSiteTimers()
+{
+	return TimerArr;
+}
+
+function pauseAllSiteTimers()
+{
+	for(i = 0; i&lt; TimerArr.length; i++)
+	{
+		TimerArr[i].Pause();
+	}
+}
+
+function getSiteTimer(aName)
+{
+	for (i=0; i&lt;TimerArr.length; i++)
+	{
+		if (TimerArr[i].getName() == aName)
+		{
+			return(TimerArr[i]);
+		}
+
+	}
+	//return false indicating that it doesn't exist
+	return false;
+}
+chrome.webNavigation.onCompleted.addListener
+(
+	//@author Sri
+	//@pre event of page loading completely
+	//@post checks site for blacklist
+	//@return none
+	function(e)
+	{
+		var url =e.url;
+		checkSite(url);
+	}
+);
+
+//@Author Sri
+//@pre the URL of alleged blocked site
+//@post checks if blocks site and alerts user
+//@return none
+function checkSite(aURL)
+{
+  var n1 = aURL.indexOf("www.");
+  var n2 = aURL.indexOf(".com") + 4;
+  var domain = aURL.slice(n1,n2);
+
+  //ensure that it's not empty
+  if(domain!="")
+  {
+
+    $( document ).ready
+	(
+		function()
+		{
+			//post arguments php page, data to send[] , function to run on callback
+		  var jqxhr = $.post
+		  (
+		  "http://people.eecs.ku.edu/~psundara/exten/checker.php", {dataToSendToServer1: domain, dataToSendToServer2: "server"},
+			  function(data)
+			  {
+				//store boolean on HTML then retrieve that boolean
 				$('#foo').html(data);
-				if(document.getElementById("foo").innerHTML == 1)
+				if(document.getElementById("foo").innerHTML == 1 &amp;&amp; goodTimer.get_isStarted())
 				{
-					if(get_isStarted()==true){
-						//Authors: Luke Dercher, Dylan Egnoske
-						var port = chrome.runtime.connect({name: "message"});
+						popUpShown = true;
+					chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+						chrome.tabs.sendMessage(tabs[0].id, {action: "open_dialog_box"}, function(response) {});
+					});
 
+					chrome.runtime.onMessage.addListener(
+						function(request, sender, sendResponse) {
+							console.log(sender.tab ?
+							"from a content script:" + sender.tab.url :
+								"from the extension");
+							if (request.action == "confirm")
+							{
+							badStarted = true;
+								confirmationAlert(true, domain);
+							}
+							else if (request.action=="decline")
+							{
+								redirectToGoogle = true;
 
-						if (confirm("Are you sure you want get on social media? (Click Cancel to redirect to Google") == true)
-						{
-							BadStart();
-							Stop();
-						}
+								confirmationAlert(false, domain);
+							}
+						});
 
-						else
-						{
-
-							Start();
-							chrome.tabs.update({url: "https://www.google.com"});
-							BadStop();
-
-						}
-					}
 				}
-			});
-		});
-	}
-});
+				else
+				{
 
-var sec=0;
-var myTime;
-var isStarted=false;
-/**
- *@author Dylan Egnoske
- * @returns null
- */
-function Start(){
-	if (get_isStarted() == false) {
-		set_isStarted(true);
-		myTime = setInterval(counter, 1000);
-		set_interval(myTime);
-		BadStop();
-	}
-}
-/**
- *@author Dylan Egnoske
- * @returns null
- */
-function Stop(){
+					badTimer.Pause();
+					pauseAllSiteTimers();
 
-	clearInterval(get_interval());
-	set_isStarted(false);
-	set_sec(0);
-}
-/**
- * @author Dylan Egnoske
- * @returns null
- */
-function Pause(){
-	clearInterval(get_interval());
-	set_isStarted(false);
-}
-
-/**
- *@author Dylan Egnoske
- * @returns null
- */
-function counter() {
-
-	sec++;
-
-	set_sec(sec);
-}
-/**
- * @author Dylan Egnoske
- * @param bool
- */
-function set_isStarted(bool){
-	isStarted=bool;
-}
-/**
- * @author Dylan Egnoske
- * @returns {boolean}
- */
-function get_isStarted(){
-	return isStarted;
-}
-/**
- * @author Dylan Egnoske
- * @param interval
- */
-function set_interval(interval){
-	myTime=interval;
-
-}
-/**
- * @author Dylan Egnoske
- * @param second
- */
-function set_sec(second){
-	sec=second;
-}
-/**
- * @author Dylan Egnoske
- * @returns {interval}
- */
-function get_interval(){
-	return myTime;
-}
-/**
- * @author Dylan Egnoske
- * @returns {number}
- */
-function get_sec(){
-
-	return sec;
-
-}
-
-
-
-
-var bad_sec=0;
-var bad_Time;
-var isBadStarted=false;
-/**
- *@author Luke Dercher
- * @returns null
- */
-function BadStart(){
-	if (isBadStarted == false) {
-		set_isBadStarted(true);
-		bad_Time = setInterval(Badcounter, 1000);
-		set_interval(bad_time);
-	}
-}
-/**
- *@author Luke Dercher
- * @returns null
- */
-function BadStop(){
-
-	clearInterval(get_Badinterval());
-	set_isSBadtarted(false);
-	set_Badsec(0);
-}
-/**
- * @author Luke Dercher
- * @returns null
- */
-function BadPause(){
-	clearInterval(get_interval());
-	set_isBadStarted(false);
-}
-
-/**
- *@author Luke Dercher
- * @returns null
- */
-function Badcounter() {
-
-	bad_sec++;
-
-	set_Badsec(bad_sec);
-}
-/**
- * @author Luke Dercher
- * @param bool
- */
-function set_isBadStarted(bool){
-	isBadStarted=bool;
-}
-/**
- * @author Luke Dercher
- * @returns {boolean}
- */
-function get_isBadStarted(){
-	return isStarted;
-}
-/**
- * @author Luke Dercher
- * @param interval
- */
-function set_Badinterval(interval){
-	bad_Time=interval;
-
-}
-/**
- * @author Luke Dercher
- * @param second
- */
-function set_Badsec(second){
-	bad_sec=second;
-}
-/**
- * @author Luke Dercher
- * @returns {interval}
- */
-function get_Badinterval(){
-	return bad_Time;
-}
-/**
- * @author Luke Dercher
- * @returns {number}
- */
-function get_Badsec(){
-
-	return bad_sec;
-
-}
-
-var storageGood;
-function store_good_sec(aValue)
-{
-	storageGood = aValue
-}
-
-function get_good_store()
-{
-	if(!storageGood)
-	{
-		storageGood = 0;
-	}
-	return storageGood
-}
-
-var storageBad;
-function store_bad_sec(aValue)
-{
-	storageBad = aValue
-}
-
-function get_bad_store()
-{
-	if(!storageBad)
-	{
-		storageBad = 0;
-	}
-	return storageBad
-}
-
-//@author Dylan Egnoske, Luke Dercher
-//This line opens up a long-lived connection to your background page.
-chrome.runtime.onConnect.addListener(function(port)
-{
-	console.assert(port.name == "message");
-	port.onMessage.addListener(function(msg)
-	{
-		if (msg.message == "pause")
-		{
-			Pause();
+				}
+			  }
+		  )
 		}
-		else if (msg.message == "startBad")
+
+	)
+
+  }
+}
+
+/** @author Luke Dercher, Dylan Egnoske
+*  @pre aBoolean from the confirmationAler
+*  @post starts appropriate timers and redirects pages
+*  @return none
+*/
+function confirmationAlert(aBoolean, aURL)
+{
+	//user stays on blocked page
+
+	siteTimer = getSiteTimer(aURL);
+	if (aBoolean)
+	{
+		badTimer.Start();
+		goodTimer.Pause();
+
+		if(!siteTimer)
 		{
-			StartBad();
+			addSiteTimer(aURL);
+			siteTimer = getSiteTimer(aURL);
+			siteTimer.Start();
 		}
-		else if (msg.message == "start")
+		else
 		{
-			Start();
+			siteTimer.Start();
 		}
-	});
-});
+	}
+
+	//user gets redirected to google
+	else
+	{
+		goodTimer.Start();
+		chrome.tabs.update({url: "https://www.google.com"});
+		badTimer.Pause();
+
+	}
+}
+function pauseAllTimers()
+{
+	goodTimer.Pause();
+	badTimer.Pause();
+	pauseAllSiteTimers();
+}
+
+/** @author Luke Weber
+* @Pre on close of backgroundPage
+* @Post adds timer values to storage
+*/
+window.close = function()
+ {
+	 extensionClose();
+ }
+
+function extensionClose()
+{
+	goodStorage.setValue(goodStorage.getValue()+goodTimer.get_sec());
+	badStorage.setValue(badStorage.getValue() + goodTimer.get_sec());
+
+	storeAllSiteTime();
+	if(Date.prototype.getDate() != LastDate.getValue())
+	{
+		resetStorage();
+	}
+}
+
+function getAllSiteTimes()
+{
+	var lReturnArr = [];
+	for(i=0; i&lt;SiteStorage.length; i++)
+	{
+		lReturnArr.push(SiteStorage[i].getValue())
+	}
+	return lReturnArr;
+}
+
+function getAllSiteStorageNames()
+{
+	var lReturnArr = [];
+	for(i=0; i&lt;SiteStorage.length; i++)
+	{
+		lReturnArr.push(SiteStorage[i].getKey())
+	}
+	return lReturnArr;
+}
+function storeAllSiteTime()
+{
+	for(i=0; i&lt;TimerArr.length; i++)
+	{
+			storeSiteTime(TimerArr[i]);
+	}
+}
+function storeSiteTime(aTimer)
+{
+	for(i=0; i&lt;SiteStorage.length; i++)
+	{
+		if(SiteStorage[i].getKey() == aTimer.getName())
+		{
+			SiteStorage[i].setValue(SiteStorage[i].getValue() + aTimer.get_sec())
+			return true
+		}
+	}
+	var lDummyStorage = new StorageObj(aTimer.getName());
+	lDummyStorage.setValue(aTimer.get_sec());
+	SiteStorage.push(lDummyStorage);
+}
+function resetStorage()
+{
+		localStorage.clear();
+		var ldate = new Date();
+		var lday = ldate.getDate();
+
+		LastDate.setValue(lday);
+}
 </code></pre>
         </article>
     </section>
@@ -312,13 +359,13 @@ chrome.runtime.onConnect.addListener(function(port)
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Badcounter">Badcounter</a></li><li><a href="global.html#BadPause">BadPause</a></li><li><a href="global.html#BadStart">BadStart</a></li><li><a href="global.html#BadStop">BadStop</a></li><li><a href="global.html#counter">counter</a></li><li><a href="global.html#get_Badinterval">get_Badinterval</a></li><li><a href="global.html#get_Badsec">get_Badsec</a></li><li><a href="global.html#get_interval">get_interval</a></li><li><a href="global.html#get_isBadStarted">get_isBadStarted</a></li><li><a href="global.html#get_isStarted">get_isStarted</a></li><li><a href="global.html#get_sec">get_sec</a></li><li><a href="global.html#Pause">Pause</a></li><li><a href="global.html#set_Badinterval">set_Badinterval</a></li><li><a href="global.html#set_Badsec">set_Badsec</a></li><li><a href="global.html#set_interval">set_interval</a></li><li><a href="global.html#set_isBadStarted">set_isBadStarted</a></li><li><a href="global.html#set_isStarted">set_isStarted</a></li><li><a href="global.html#set_sec">set_sec</a></li><li><a href="global.html#Start">Start</a></li><li><a href="global.html#Stop">Stop</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#boolandgetterusedtoverifythebadTimerisstarteduponvisitedablacklistedwebsite">bool and getter used to verify the badTimer is started upon visited a blacklisted website</a></li><li><a href="global.html#boolandgetterusedtoverifytheconfimationpopupshowsup">bool and getter used to verify the confimation popup shows up</a></li><li><a href="global.html#boolandgetterusedtoverifytheuserisredirectedtogooglewhentheyclicknoonthepopup">bool and getter used to verify the user is redirected to google when they click no on the pop up</a></li><li><a href="global.html#confirmationAlert">confirmationAlert</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri Apr 08 2016 21:14:39 GMT-0500 (CDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue May 10 2016 22:09:10 GMT-0500 (CDT)
 </footer>
 
 <script> prettyPrint(); </script>

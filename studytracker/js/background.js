@@ -9,7 +9,7 @@ var badTimer = new Timer('badTimer');
 var TimerArr = [];
 
 /**@author Luke Dercher
-* @function bool and getter used to verify the confimation popup shows up
+*  @function bool and getter used to verify the confimation popup shows up
 */
 var popUpShown = false;
 function getpopUpShown()
